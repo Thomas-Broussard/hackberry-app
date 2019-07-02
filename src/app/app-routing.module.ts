@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', loadChildren: './tabs/tabs.module#TabsPageModule' },
+  { path: '', loadChildren: './bartabs/tabs/tabs.module#TabsPageModule' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
-  { path: 'tab4', loadChildren: './tab4/tab4.module#Tab4PageModule' },
+  { path: 'buttons-usage', loadChildren: './learning/buttons-usage/buttons-usage.module#ButtonsUsagePageModule' },
+  { path: 'user-guide', loadChildren: './learning/user-guide/user-guide.module#UserGuidePageModule' },
+  { path: 'assembly-guide', loadChildren: './learning/assembly-guide/assembly-guide.module#AssemblyGuidePageModule' },
 ];
 @NgModule({
   imports: [
