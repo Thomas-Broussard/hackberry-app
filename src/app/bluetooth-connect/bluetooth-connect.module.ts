@@ -5,14 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UserGuidePage } from './user-guide.page';
-import {MatExpansionModule} from '@angular/material/expansion'; 
-
+import { BluetoothConnectPage } from './bluetooth-connect.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: UserGuidePage
+    component: BluetoothConnectPage
   }
 ];
 
@@ -21,9 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    MatExpansionModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [UserGuidePage]
+  declarations: [BluetoothConnectPage]
 })
-export class UserGuidePageModule {}
+export class BluetoothConnectPageModule {}

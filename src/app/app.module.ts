@@ -1,3 +1,5 @@
+import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
+
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,6 +17,9 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpModule, Http } from '@angular/http';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 
+// Material
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 // Pages
 import { HomePageModule } from './home/home.module';
 import { HomePage } from './home/home.page';
@@ -26,6 +31,8 @@ import { UserGuidePageModule } from './learning/user-guide/user-guide.module';
 import { ButtonsUsagePageModule } from './learning/buttons-usage/buttons-usage.module';
 import { AssemblyGuidePageModule } from './learning/assembly-guide/assembly-guide.module';
 
+import { BluetoothConnectPageModule } from './bluetooth-connect/bluetooth-connect.module';
+import { BluetoothConnectPage } from './bluetooth-connect/bluetooth-connect.page';
 
 
 @NgModule({
@@ -36,7 +43,7 @@ import { AssemblyGuidePageModule } from './learning/assembly-guide/assembly-guid
 
   imports: [
     BrowserModule,
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(),
     AppRoutingModule,
     HomePageModule,
 
@@ -44,6 +51,9 @@ import { AssemblyGuidePageModule } from './learning/assembly-guide/assembly-guid
     AssemblyGuidePageModule,
     ButtonsUsagePageModule,
     UserGuidePageModule,
+
+    // Home
+    BluetoothConnectPageModule,
 
     // ngx-translate and the loader module
     HttpClientModule,
@@ -53,7 +63,10 @@ import { AssemblyGuidePageModule } from './learning/assembly-guide/assembly-guid
             useFactory: HttpLoaderFactory,
             deps: [HttpClient]
         }
-    })
+    }),
+
+    // Material
+    BrowserAnimationsModule,
   ],
 
   bootstrap: [AppComponent],
@@ -63,13 +76,16 @@ import { AssemblyGuidePageModule } from './learning/assembly-guide/assembly-guid
     // Learning
     AssemblyGuidePage,
     ButtonsUsagePage,
-    UserGuidePage
+    UserGuidePage,
+    // Home
+    BluetoothConnectPage
   ],
 
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    BluetoothSerial,
   ]
 
 })

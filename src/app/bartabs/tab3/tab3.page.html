@@ -1,9 +1,47 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Three
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar>
+      <ion-title>
+          {{ 'learning' | translate }}
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-card class="welcome-card">
+      <ion-img src="/assets/shapes.svg"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>Get Started</ion-card-subtitle>
+        <ion-card-title> Documentation </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>You'll find here all the useful documentation for Hackberry hand usage.</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-list lines="none">
+  
+      <ion-item routerLink="/assembly-guide" routerDirection="forward">
+        <ion-icon slot="start" color="medium" name="build"></ion-icon>
+        <ion-label>{{ 'assembly-guide' | translate }}</ion-label>
+      </ion-item>
 
-<ion-content></ion-content>
+      <ion-item >
+          <ion-icon slot="start" color="medium" name="hammer"></ion-icon>
+          <ion-label>{{ 'setup-hand' | translate }}</ion-label>
+        </ion-item>
+  
+      <ion-item routerLink="/user-guide" routerDirection="forward">
+        <ion-icon slot="start" color="medium" name="compass"></ion-icon>
+        <ion-label>{{ 'user-guide' | translate }}</ion-label>
+      </ion-item>
+  
+      <ion-item>
+        <ion-icon slot="start" color="medium" name="pulse"></ion-icon>
+        <ion-label>{{ 'sensor-calib' | translate }}</ion-label>
+      </ion-item>
+  
+      <ion-item>
+        <ion-icon slot="start" color="medium" name="speedometer"></ion-icon>
+        <ion-label>{{ 'motors-calib' | translate }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>

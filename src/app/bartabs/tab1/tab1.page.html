@@ -1,36 +1,35 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      My Hackberry Hand
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
+    <ion-toolbar>
+      
+      <ion-title>
+          {{ 'home' | translate }}
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
     <ion-card class="welcome-card">
       <ion-img src="/assets/shapes.svg"></ion-img>
       <ion-card-header>
         <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to Ionic</ion-card-title>
+        <ion-card-title> Documentation </ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
+        <p>You'll find here all the useful documentation for Hackberry hand usage.</p>
       </ion-card-content>
     </ion-card>
     <ion-list lines="none">
-      <ion-item >
-        <ion-icon slot="start" color="primary"  name="cog"></ion-icon>
-        <ion-label>Servomotors</ion-label>
+  
+  
+      <ion-item routerLink="/bluetooth-connect" routerDirection="forward">
+        <ion-icon slot="start" color="primary" name="bluetooth" ></ion-icon>
+        <ion-label>{{ 'connect' | translate }}</ion-label>
       </ion-item>
-      <ion-item >
-        <ion-icon slot="start" color="success"  name="analytics"></ion-icon>
-        <ion-label>Muscle Sensor</ion-label>
+  
+      <ion-item>
+        <ion-icon slot="start" color="danger" name="log-out"></ion-icon>
+        <ion-label>{{ 'exit-app' | translate }}</ion-label>
       </ion-item>
-      
-      <ion-item >
-        <ion-icon slot="start" color="tertiary" name="grid"></ion-icon>
-        <ion-label>Memory</ion-label>
-      </ion-item>
-
+    
     </ion-list>
-</ion-content>
+  </ion-content>

@@ -1,6 +1,19 @@
 {
     "home":"Home",
-    "myhand":"My Hand",
+    "my-hand":"My Hand",
     "learning":"Learning",
-    "about":"About"
+    "about":"About",
+
+    "assembly-guide":"Assembly Guide",
+    "user-guide":"User Guide",
+    "setup-hand":"Setup Your Hand",
+    "sensor-calib":"Sensor Calibration",
+    "motors-calib":"Motors Calibration",
+
+    "connect":"Connect",
+    "exit-app":"Exit App",
+
+    "servomotors":"Servomotors",
+    "muscle-sensor":"Muscle Sensor",
+    "general-info":"General Info"
 }

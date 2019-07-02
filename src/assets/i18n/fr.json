@@ -1,6 +1,19 @@
 {
     "home":"Accueil",
-    "myhand":"Ma main",
+    "my-hand":"Ma main",
     "learning":"Documents",
-    "about":"A propos"
+    "about":"A propos",
+
+    "assembly-guide":"Guide d'assemblage",
+    "user-guide":"Manuel Utilisateur",
+    "setup-hand":"Mise en route",
+    "sensor-calib":"Etalonnage du Capteur",
+    "motors-calib":"Etalonnage des Moteurs",
+
+    "connect":"Connexion",
+    "exit-app":"Quitter",
+
+    "servomotors":"Servomoteurs",
+    "muscle-sensor":"Capteur musculaire",
+    "general-info":"Infos Générales"
 }
