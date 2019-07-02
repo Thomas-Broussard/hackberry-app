@@ -7,7 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { UserGuidePage } from './user-guide.page';
 import {MatExpansionModule} from '@angular/material/expansion'; 
-
+import {MatChipsModule} from '@angular/material/chips';
+import {MatBadgeModule} from '@angular/material/badge'; 
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     MatExpansionModule,
+    MatChipsModule,
     RouterModule.forChild(routes)
   ],
   declarations: [UserGuidePage]

@@ -1,0 +1,46 @@
+
+// IMAGES
+ion-img{
+    border-radius: 2% !important;
+    overflow: hidden;
+}
+// BUTTONS USAGE
+.buttons-usage-panel {
+    //background:rgb(205, 205, 255);
+}
+
+.button-1-card { 
+    background:rgb(255, 189, 241);
+}
+
+
+.button-2-card { 
+    background:rgb(196, 189, 255);
+}
+
+
+.button-3-card { 
+    background:rgb(200, 255, 189);
+}
+
+
+.button-4-card { 
+    background:rgb(189, 245, 255);
+}
+
+
+// SENSOR CALIBRATION
+.sensor-calib-panel {
+    //background:rgb(207, 255, 205);
+}
+
+// MOTORS CALIBRATION
+.motors-calib-panel {
+    //background:rgb(255, 205, 205);
+}
+
+.videoPlayer {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}

@@ -27,6 +27,7 @@
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
+    "@ionic-native/video-player": "^5.9.0",
     "@ionic/angular": "^4.1.0",
     "@ionic/lab": "^2.0.5",
     "@ngx-translate/core": "^11.0.1",
@@ -36,6 +37,7 @@
     "bower": "^1.8.8",
     "cordova-android": "^8.0.0",
     "cordova-ios": "^5.0.1",
+    "cordova-plugin-video-player": "git+https://github.com/moust/cordova-plugin-videoplayer.git",
     "core-js": "^2.5.4",
     "gulp": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
@@ -86,7 +88,8 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-bluetooth-serial": {}
+      "cordova-plugin-bluetooth-serial": {},
+      "com.moust.cordova.videoplayer": {}
     },
     "platforms": [
       "ios",

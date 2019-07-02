@@ -7,19 +7,19 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="masters">
 
   <mat-accordion>
 
     <mat-expansion-panel>
-      <mat-expansion-panel-header>
+      <mat-expansion-panel-header  class="buttons-usage-panel">
         <mat-panel-title>
           1. Buttons Usage
         </mat-panel-title>
       </mat-expansion-panel-header>
 
       <p>Hackberry Hand has four operational Buttons on the top :</p>
-      <ion-img width="20" height="20" src="/assets/img/learning/buttons-on-hand.png" ></ion-img>
+      <ion-img src="/assets/img/learning/buttons-on-hand.png" ></ion-img>
       
       
       <p>They each have two possible behaviors, depending on the type of operation performed on them:</p>
@@ -29,59 +29,150 @@
       </ul>
 
       
-      <h2><b>Button 1</b></h2>
-      <p>Long press Button 1 to start the Sensor Calibration Mode</p>
 
-      <h2><b>Button 2</b></h2>
-      <p>Long press Button 2 to start the Servomotors Calibration Mode</p>
+      <ion-card class="button-1-card">
+        <ion-card-header>
+          <ion-card-title> <mat-chip color="primary" selected>Button 1</mat-chip></ion-card-title>
+          <ion-card-subtitle> Sensor Calibration</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Long press Button 1 to start the Sensor Calibration Mode</p>
+        </ion-card-content>
+      </ion-card>
 
-      <h2><b>Button 3</b></h2>
-      <p>Short press Button 3 to open or close the thumb</p>
+      <ion-card class="button-2-card">
+        <ion-card-header>
+          <ion-card-title> Button 2</ion-card-title>
+          <ion-card-subtitle> Motors Calibration</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Long press Button 2 to start the Servomotors Calibration Mode</p>
+        </ion-card-content>
+      </ion-card>
 
-      <h2><b>Button 4</b></h2>
-      <p>Short press Button 4 to block or unblock the movement of the last three fingers (middle, ring and ear)</p>
+      <ion-card class="button-3-card">
+        <ion-card-header>
+          <ion-card-title>Button 3</ion-card-title>
+          <ion-card-subtitle>Thumb Moves</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Short press Button 3 to open or close the thumb</p>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="button-4-card">
+        <ion-card-header>
+          <ion-card-title> Button 4</ion-card-title>
+          <ion-card-subtitle> Lock Fingers</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Short press Button 4 to block or unblock the movement of the last three fingers (middle, ring and ear)</p>
+        </ion-card-content>
+      </ion-card>
     </mat-expansion-panel>
 
 
+
+
     <mat-expansion-panel>
-      <mat-expansion-panel-header>
+      <mat-expansion-panel-header class="sensor-calib-panel">
         <mat-panel-title>
           2. Sensor Calibration
         </mat-panel-title>
       </mat-expansion-panel-header>
 
-      Hello World
+
+      <h1>Step 1</h1>
+      <p>Long press <b style="color:green;">Button 1</b> to start the Sensor Calibration Mode</p>
+      <ion-img src="/assets/img/learning/sensor-calib-button.png" ></ion-img>
+      
+      <h1>Step 2</h1>
+      <p>Once started, the user must generate a muscular activity on the sensor for 10 seconds (make the movements necessary to open and close his prosthesis in particular).</p>
+      <ion-img src="/assets/img/learning/sensor-calib-moves.png" ></ion-img>
+      <p>After 10 seconds, the sensor will be calibrated and the hand will resume normal operation.</p>
+      
+
     </mat-expansion-panel>
 
+
+
     <mat-expansion-panel>
-        <mat-expansion-panel-header>
+        <mat-expansion-panel-header class="motors-calib-panel">
           <mat-panel-title>
             3. Motors Calibration 
           </mat-panel-title>
         </mat-expansion-panel-header>
   
-        Hello World
-      </mat-expansion-panel>
-
-      <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Buttons Usage
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-    
-          Hello World
-        </mat-expansion-panel>
-
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Buttons Usage
-              </mat-panel-title>
-            </mat-expansion-panel-header>
+        <h1>Step 1</h1>
+      <p>Long press <b style="color:green;">Button 2</b> to start the Servomotors Calibration Mode</p>
+      <ion-img src="/assets/img/learning/motors-calib-button.png" ></ion-img>
       
-            Hello World
-          </mat-expansion-panel>
+      <h1>Step 2</h1>
+      <p>Once started, the user will have to use buttons 1,2 and 3 to define the stop positions of each of the motors.</p>
+      <p>In this mode, the button control is changed:</p>
+
+      <ion-card class="button-2-card">
+        <ion-card-header>
+          <ion-card-title>Button 1 pressed</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <b>Close the finger(s)</b>
+          <ion-img src="/assets/img/learning/motors-calib-moves-close.png" ></ion-img>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="button-1-card">
+          <ion-card-header>
+            <ion-card-title>Button 3 pressed</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <b>Open the finger(s)</b>
+            <ion-img src="/assets/img/learning/motors-calib-moves-open.png" ></ion-img>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="button-3-card">
+            <ion-card-header>
+              <ion-card-title>Button 2 pressed</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+                <b>Validate and save the current position of the finger(s)</b>
+            </ion-card-content>
+          </ion-card>
+
+          <br/>
+          <video center height="300" controls="controls" preload="metadata" webkit-playsinline="webkit-playsinline" class="videoPlayer">
+              <source src="/assets/videos/motors-calibration.mp4" type="video/mp4" />
+             </video> 
+          <br/>
+          <p>For each motor, the user will have to :</p>
+
+          <ul>1. Place the finger(s) concerned in the <b>open</b> position</ul>
+          <ul>2. <b style="color:green;">Validate</b> </ul>
+          <ul>3. Place the finger(s) concerned in the <b>closed</b> position</ul>
+          <ul>4. <b style="color:green;">Validate</b></ul>
+
+          
+            
+
+
+          <ion-card  class="button-4-card">
+              <ion-card-header>
+                <ion-card-title>Calibration order</ion-card-title>
+              </ion-card-header>
+              <ion-card-content style="color:black;">
+                <p>1. Thumb</p>
+                <p>2. Index</p>
+                <p>3. The other fingers <br/>(middle, ring and ear)</p>
+
+                <br/>
+                <ion-img src="/assets/img/learning/motors-calib-order.png" ></ion-img>
+              </ion-card-content>
+            </ion-card>
+        
+            <p>Once all stops have been defined, the hand will resume normal operation.</p>
+
+      </mat-expansion-panel>
           
   </mat-accordion>
 
