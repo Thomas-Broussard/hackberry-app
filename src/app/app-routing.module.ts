@@ -3,11 +3,13 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', loadChildren: './bartabs/tabs/tabs.module#TabsPageModule' },
-  { path: 'home', loadChildren: './home/home.module#HomePageModule' },
+  { path: 'home', loadChildren: './bartabs/tabs/tabs.module#TabsPageModule' },
   { path: 'buttons-usage', loadChildren: './learning/buttons-usage/buttons-usage.module#ButtonsUsagePageModule' },
   { path: 'user-guide', loadChildren: './learning/user-guide/user-guide.module#UserGuidePageModule' },
   { path: 'assembly-guide', loadChildren: './learning/assembly-guide/assembly-guide.module#AssemblyGuidePageModule' },
   { path: 'bluetooth-connect', loadChildren: './bluetooth-connect/bluetooth-connect.module#BluetoothConnectPageModule' },
+  { path: 'learning-sensor-calib', loadChildren: './learning/sensor-calibration/sensor-calibration.module#SensorCalibrationPageModule' },
+  { path: 'learning-motors-calib', loadChildren: './learning/motors-calibration/motors-calibration.module#MotorsCalibrationPageModule' },
 ];
 @NgModule({
   imports: [

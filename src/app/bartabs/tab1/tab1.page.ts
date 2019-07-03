@@ -1,3 +1,4 @@
+import { AlertController } from '@ionic/angular';
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,8 +6,27 @@ import { Component } from '@angular/core';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page{
 
-  constructor() {}
+  constructor(private alertController: AlertController) { }
 
+
+  async closeApp()
+  {
+    const alert = await this.alertController.create({
+      header: 'Close app?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel'
+        }, {
+          text: 'Close',
+          handler: () => {
+            navigator['app'].exitApp();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 }

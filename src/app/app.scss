@@ -4,3 +4,60 @@
 // styles are for the entire app and not just one component. Additionally, this 
 // file can hold Sass mixins, functions, and placeholder classes to be imported 
 // and used throughout the application.
+
+// CONTENT
+ion-content{
+    margin: 3px;
+}
+
+// IMAGES
+ion-img{
+    margin: 20px;
+    border-radius: 2% !important;
+    overflow: hidden;   
+}
+
+ion-card ion-img{
+    margin: 0px;   
+}
+
+// VIDEOS
+.videoPlayer {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    height : 300px;
+    border-radius: 2% !important;
+    overflow: hidden; 
+}
+
+
+// CARDS
+.pink-card { 
+    background:rgb(255, 189, 241);
+}
+
+.red-card { 
+    background:rgb(255, 189, 200);
+}
+
+.yellow-card { 
+    background:rgb(255, 251, 189);
+}
+
+.purple-card { 
+    background:rgb(196, 189, 255);
+}
+
+
+.green-card { 
+    background:rgb(200, 255, 189);
+}
+
+.bluesky-card { 
+    background:rgb(189, 245, 255);
+}
+
+.grey-card { 
+    background:rgb(214, 214, 214);
+}
