@@ -1,4 +1,4 @@
-
+// plugins
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 
 
@@ -20,6 +20,9 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 // Material
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+// Services
+import { BluetoothService } from './services/bluetooth.service';
+import { GeneralService } from './services/general.service';
 
 // Pages
 import { HomePageModule } from './home/home.module';
@@ -34,6 +37,8 @@ import { AssemblyGuidePageModule } from './learning/assembly-guide/assembly-guid
 
 import { BluetoothConnectPageModule } from './bluetooth-connect/bluetooth-connect.module';
 import { BluetoothConnectPage } from './bluetooth-connect/bluetooth-connect.page';
+
+
 
 
 @NgModule({
@@ -89,7 +94,9 @@ import { BluetoothConnectPage } from './bluetooth-connect/bluetooth-connect.page
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     BluetoothSerial,
-    
+    // local services
+    BluetoothService,
+    GeneralService
   ]
 
 })
