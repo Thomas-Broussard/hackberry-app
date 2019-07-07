@@ -1,5 +1,6 @@
+import { BluetoothService } from './../../services/bluetooth.service';
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
-import { Platform, AlertController } from '@ionic/angular';
+import { Platform, AlertController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,9 +12,13 @@ export class TabsPage implements OnInit, OnDestroy, AfterViewInit{
 
   constructor(private platform : Platform,
               private alertController : AlertController,
+              public bluetooth : BluetoothService,
+              public navCtrl: NavController,
               private router : Router) {}
 
   subscription : any ;
+  currentTab : number = 0;
+  maxTab : number = 3;
 
   ngOnInit() { }
   
@@ -52,5 +57,6 @@ export class TabsPage implements OnInit, OnDestroy, AfterViewInit{
 
     return tab1 || tab2 || tab3 || tab4;
   }
+
   
 }

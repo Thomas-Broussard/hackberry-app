@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab4Page } from './tab4.page';
-
+import {MatExpansionModule} from '@angular/material/expansion'; 
 
 @NgModule({
   imports: [
@@ -13,7 +13,8 @@ import { Tab4Page } from './tab4.page';
     CommonModule,
     FormsModule,
     RouterModule.forChild([{ path: '', component: Tab4Page }]),
-    TranslateModule
+    TranslateModule,
+    MatExpansionModule
   ],
   declarations: [Tab4Page]
 })

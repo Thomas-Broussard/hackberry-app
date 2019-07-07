@@ -6,7 +6,7 @@
       <ion-label>{{ 'home' | translate }}</ion-label>
     </ion-tab-button>
     
-    <ion-tab-button tab="tab2">
+    <ion-tab-button *ngIf="bluetooth.isConnected" tab="tab2">
       <ion-icon name="hand"></ion-icon>
       <ion-label>{{ 'my-hand' | translate }}</ion-label>
     </ion-tab-button>

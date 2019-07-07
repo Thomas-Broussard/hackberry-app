@@ -6,6 +6,87 @@
     </ion-toolbar>
   </ion-header>
   
-  <ion-content></ion-content>
+  <ion-content>
+      <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <strong>My Hackberry App</strong>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+           
+            <ion-img class="circle" style="width: 180px; height: 180px;" src="/assets/img/about/logo-hackberryapp.png" ></ion-img>
+            <p style="text-align: center;"><i> Version {{ gen.APP_VERSION }}</i></p>
+            <br/>
+            
+              <ion-card>
+                  <ion-card-header>
+                  </ion-card-header>
+                  <ion-card-content class="ion-text-center">
+                      <p>{{ 'developped-by' | translate }} Thomas Broussard</p>
+                      <p>e-Nable France - 2019</p>
+                      <ion-img class="circle" style="width: 80px; height: 80px;" src="/assets/img/about/author.jpg" ></ion-img>
+                  </ion-card-content>
+                </ion-card>
+
+            
+
+          </mat-expansion-panel>
+       
+          <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <strong>Le projet Hackberry</strong>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              
+              <ion-card>
+                  <ion-card-header>
+                    <ion-title>{{ 'what-is-hackberry' | translate }} ?</ion-title>
+                  </ion-card-header>
+                  <ion-card-content class="ion-text-center">
+                      <ion-img style="width: 100%;" src="/assets/img/about/logo-hackberry.jpg" ></ion-img>
+                      <p>{{ 'about-hackberry-1' | translate }}</p>
+                      <br/>
+                      <p>{{ 'about-hackberry-2' | translate }}</p>
+                      <ul>
+                        <li>{{ 'about-hackberry-2A' | translate }}</li>
+                        <br/>
+                        <li>{{ 'about-hackberry-2B' | translate }}</li>
+                        <br/>
+                        <li>{{ 'about-hackberry-2C' | translate }}</li>
+                      </ul>
+                      <br/>
+                      <p>{{ 'about-hackberry-3' | translate }}</p>
+                  </ion-card-content>
+                </ion-card>
+                
+
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                  <strong>e-Nable France</strong>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <ion-card>
+                <ion-card-header>
+                </ion-card-header>
+                <ion-card-content class="ion-text-center">
+                    <ion-img style="width: 120px; height: 120px;" src="/assets/img/about/logo-enable-france.png" ></ion-img>
+                    <br/>
+                    <p>{{ 'about-enable-1' | translate }}</p>
+                    <br/>
+                    <p>{{ 'about-enable-2' | translate }}</p>
+                    <br/>
+                    <p>{{ 'about-enable-3' | translate }}</p>
+              
+                </ion-card-content>
+              </ion-card>
+          </mat-expansion-panel>
+  </ion-content>
   
 

@@ -1,5 +1,7 @@
+import { GeneralService } from './../../services/general.service';
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-tab4',
@@ -8,6 +10,9 @@ import { NavController } from '@ionic/angular';
 })
 export class Tab4Page {
 
-  constructor(public navCtrl: NavController) {}
-
+  constructor(
+    public navCtrl: NavController,
+    public gen: GeneralService
+    ) {}
+    
 }
