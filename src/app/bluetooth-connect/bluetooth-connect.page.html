@@ -3,10 +3,38 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Bluetooth Connect</ion-title>
+    <ion-title>{{ 'bluetooth-pairing' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+    <ion-item detail="false">
+        <ion-label>
+            <b>{{ 'connect-your-hand' | translate }} :</b>
+        </ion-label>
+      </ion-item>
+      
+
+  <ion-item *ngFor="let device of bluetooth.listPairedDevices"detail="false" (click)="connect(device)">
+    <ion-label>
+        <h3>{{ device.name }}</h3>
+        <p>{{ device.id }}</p>
+    </ion-label>
+    <ion-icon name="log-in" slot="end"></ion-icon>
+  </ion-item>
+
+  <ion-item *ngFor="let device of bluetooth.listUnpairedDevices"detail="false" (click)="connect(device)">
+    <ion-label>
+        <h3>{{ device.name }}</h3>
+        <p>{{ device.id }}</p>
+    </ion-label>
+    <ion-icon name="log-in" slot="end"></ion-icon>
+  </ion-item>
+
+  <br/>
+  <ion-button *ngIf="!bluetooth.isScanning" expand="block" color="primary" (click)="bluetooth.scan()">Scan</ion-button>
+
+  <br/>
+  <ion-spinner *ngIf="bluetooth.isScanning" name="crescent"></ion-spinner>
 </ion-content>

@@ -1,108 +1,47 @@
+import { GeneralService } from './../services/general.service';
+import { BluetoothService } from './../services/bluetooth.service';
 import { Component, OnInit } from '@angular/core';
-import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
-import { ToastController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-bluetooth-connect',
   templateUrl: './bluetooth-connect.page.html',
   styleUrls: ['./bluetooth-connect.page.scss'],
 })
+
 export class BluetoothConnectPage implements OnInit {
 
-  listBTDevices: any;
+  listPairedDevices: any;
+  listUnpairedDevices: any;
   connectedDevice: string;
 
-  
+  isScanning: boolean = false;
+  noDeviceFound: boolean = false;
+
   constructor(
-    private bluetoothSerial: BluetoothSerial,
-    public toastController: ToastController
-    ) {
-      this.listBTDevices = [];
-      this.checkBT();
-  }
+    public bluetooth : BluetoothService,
+    public gen : GeneralService
+    ) { }
 
   ngOnInit()
   {
-    
+    this.bluetooth.scan();
   }
 
-  checkBT() {
-    let me = this;
-    me.bluetoothSerial.isEnabled().then(
-      function() {
-        me.scan();;
-        me.getListBT();
-      },
-      function() {
-        me.enableBT();
-      }
-    );
-  }
-
-  enableBT() {
-    let me = this;
-    me.bluetoothSerial.enable().then(
-      function() {
-        me.scan();
-        me.getListBT();
-      },
-      function() {
-        me.notification("The user did *not* enable Bluetooth");
-      }
-    );
-  }
-
-  scan() {
-    let me = this;
-    me.bluetoothSerial.discoverUnpaired().then
-    (
-        devices => {
-            alert('Devices: ' + JSON.stringify(devices));
-            devices.forEach(function(device) {
-              me.notification(device.name);
-            })
-        }, 
-        error => {
-          me.notification(error);
-        }
-    );
-    me.bluetoothSerial.setDeviceDiscoveredListener().subscribe(
-        device => {
-          me.notification('Found: ' + device.id + '\n' + device.name);
-        },
-        error => {
-          me.notification('Error scan: ' + JSON.stringify(error));
-        }
-    );
-  }
-
-  getListBT() {
-    let me = this;
-    this.bluetoothSerial.list().then(
-      Deviceslist => {
-        for (let key in Deviceslist) {
-          me.listBTDevices.push(Deviceslist[key]);
-        }
-      }
-    );
-  }
-
-  async notification(payload: string){
-    const toast = await this.toastController.create(
+  connect(device: any){
+    this.bluetooth.connect(device).subscribe(
+      (isConnected: boolean)=>
       {
-      message: payload,
-      buttons: [
-        {
-          text:'OK',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
+        if (isConnected){
+          console.log("Successfully Connected ! ");
+          this.gen.toastTemp("Successfully Connected ! ", 2000);
+          this.gen.finish();
+        } else {
+          console.log("Connection Failure...");
+          this.gen.toastOK("Error during connection. Please retry");
         }
-      ]
       }
-    );
-    toast.present();
+    )
   }
-
 }
