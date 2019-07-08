@@ -11,24 +11,24 @@
         <ion-img src="/assets/shapes.svg"></ion-img>
         <ion-card-header>
           <ion-card-subtitle>Get Started</ion-card-subtitle>
-          <ion-card-title>Welcome to Ionic</ion-card-title>
+          <ion-card-title>Welcome to Hackberry</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
+          <p>Now that your hand has been connected, you can drive her easily with the differents controllers below.</p>
         </ion-card-content>
       </ion-card>
       <ion-list lines="none">
-        <ion-item >
-          <ion-icon slot="start" color="tertiary" name="grid"  detail="true"></ion-icon>
+        <ion-item routerLink="/my-hand-infos" routerDirection="forward" detail="true">
+          <ion-icon  slot="start" color="tertiary" name="grid"  ></ion-icon>
           <ion-label>{{ 'general-info' | translate }}</ion-label>
         </ion-item>
   
-        <ion-item >
-          <ion-icon slot="start" color="primary"  name="cog"  detail="true"></ion-icon>
+        <ion-item routerLink="/my-hand-motors" routerDirection="forward" detail="true">
+          <ion-icon slot="start" color="primary"  name="cog" ></ion-icon>
           <ion-label>{{ 'servomotors' | translate }}</ion-label>
         </ion-item>
-        <ion-item >
-          <ion-icon slot="start" color="success"  name="analytics"  detail="true"></ion-icon>
+        <ion-item routerLink="/my-hand-sensor" routerDirection="forward" detail="true">
+          <ion-icon slot="start" color="success"  name="analytics" ></ion-icon>
           <ion-label>{{ 'muscle-sensor' | translate }}</ion-label>
         </ion-item>
         

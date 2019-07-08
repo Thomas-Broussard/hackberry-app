@@ -1,3 +1,4 @@
+import { BluetoothInstructions } from './bluetooth-instructions.service';
 import { GeneralService } from './general.service';
 import { NavController } from '@ionic/angular';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
@@ -10,6 +11,7 @@ import { mergeMap, map } from 'rxjs/operators';
 })
 export class BluetoothService {
 
+  private PARSECHAR = ';';
   public deviceName: string = "";
   public deviceId: string = "";
   public isConnected:boolean = false;
@@ -20,6 +22,7 @@ export class BluetoothService {
 
   constructor(
     private bluetoothSerial: BluetoothSerial,
+    private cmd : BluetoothInstructions,
     private gen : GeneralService,
     public navCtrl: NavController
   ) { }
@@ -137,5 +140,30 @@ export class BluetoothService {
     );
   }
 
-  
+  public write(data)
+  {
+    this.bluetoothSerial.write(data + "\r\n");
+  }
+
+  public receive(): Observable<any>
+  {
+    return this.bluetoothSerial.subscribe('\r\n').pipe(
+      map((data) => { 
+        var result = data.split(this.PARSECHAR); 
+        return result;
+      })
+    );
+  }
+
+  public writeCmd(command,data = null)
+  {
+    if(data != null){
+      this.write(command + this.PARSECHAR + data);
+    }
+    else{
+      this.write(command);
+    }
+  }
+
+
 }

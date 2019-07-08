@@ -6,6 +6,11 @@
 // and used throughout the application.
 
 // CONTENT
+.centered{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
 ion-content{
     margin: 3px;
 }

@@ -10,6 +10,11 @@ const routes: Routes = [
   { path: 'bluetooth-connect', loadChildren: './bluetooth-connect/bluetooth-connect.module#BluetoothConnectPageModule' },
   { path: 'learning-sensor-calib', loadChildren: './learning/sensor-calibration/sensor-calibration.module#SensorCalibrationPageModule' },
   { path: 'learning-motors-calib', loadChildren: './learning/motors-calibration/motors-calibration.module#MotorsCalibrationPageModule' },
+  { path: 'my-hand-infos', loadChildren: './my-hand/infos/infos.module#InfosPageModule' },
+  { path: 'my-hand-sensor', loadChildren: './my-hand/sensor/sensor.module#SensorPageModule' },
+  { path: 'my-hand-motors', loadChildren: './my-hand/motors/motors.module#MotorsPageModule' },
+
+
 ];
 @NgModule({
   imports: [

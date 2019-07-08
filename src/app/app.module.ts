@@ -1,3 +1,5 @@
+import { BluetoothInstructions } from './services/bluetooth-instructions.service';
+
 // plugins
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 
@@ -38,7 +40,12 @@ import { AssemblyGuidePageModule } from './learning/assembly-guide/assembly-guid
 import { BluetoothConnectPageModule } from './bluetooth-connect/bluetooth-connect.module';
 import { BluetoothConnectPage } from './bluetooth-connect/bluetooth-connect.page';
 
-
+import { SensorPage } from './my-hand/sensor/sensor.page';
+import { MotorsPage } from './my-hand/motors/motors.page';
+import { SensorPageModule } from './my-hand/sensor/sensor.module';
+import { MotorsPageModule } from './my-hand/motors/motors.module';
+import { InfosPage } from './my-hand/infos/infos.page';
+import { InfosPageModule } from './my-hand/infos/infos.module';
 
 
 @NgModule({
@@ -52,6 +59,11 @@ import { BluetoothConnectPage } from './bluetooth-connect/bluetooth-connect.page
     IonicModule.forRoot(),
     AppRoutingModule,
     HomePageModule,
+
+    // My Hand
+    InfosPageModule,
+    MotorsPageModule,
+    SensorPageModule,
 
     // Learning
     AssemblyGuidePageModule,
@@ -78,6 +90,11 @@ import { BluetoothConnectPage } from './bluetooth-connect/bluetooth-connect.page
   bootstrap: [AppComponent],
 
   entryComponents: [
+
+    // My Hand
+    InfosPage,
+    MotorsPage,
+    SensorPage,
     
     // Learning
     AssemblyGuidePage,
@@ -94,8 +111,10 @@ import { BluetoothConnectPage } from './bluetooth-connect/bluetooth-connect.page
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     BluetoothSerial,
+
     // local services
     BluetoothService,
+    BluetoothInstructions,
     GeneralService
   ]
 

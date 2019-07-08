@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>sensor</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      Real time sensor value
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #lineCanvas height="100" width="100">
+      </canvas>
+      <br />
+      <ion-button *ngIf="isPlaying" color="warning" (click)="onClickPause()">Pause</ion-button>
+      <ion-button *ngIf="!isPlaying" color="success" (click)="onClickPlay()">Play</ion-button>
+
+      <ion-button color="danger" (click)="onClickClear()">Clear</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      Actions
+    </ion-card-header>
+    <ion-card-content>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
