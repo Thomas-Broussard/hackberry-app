@@ -27,8 +27,6 @@ import { BluetoothService } from './services/bluetooth.service';
 import { GeneralService } from './services/general.service';
 
 // Pages
-import { HomePageModule } from './home/home.module';
-import { HomePage } from './home/home.page';
 
 import { UserGuidePage } from './learning/user-guide/user-guide.page';
 import { ButtonsUsagePage } from './learning/buttons-usage/buttons-usage.page';
@@ -58,7 +56,6 @@ import { InfosPageModule } from './my-hand/infos/infos.module';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HomePageModule,
 
     // My Hand
     InfosPageModule,
@@ -102,7 +99,6 @@ import { InfosPageModule } from './my-hand/infos/infos.module';
     UserGuidePage,
 
     // Home
-    HomePage,
     BluetoothConnectPage
   ],
 
