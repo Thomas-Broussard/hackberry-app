@@ -1,5 +1,5 @@
 import { BluetoothService } from './../../services/bluetooth.service';
-import { Component, ViewChild , OnInit } from '@angular/core';
+import { Component, ViewChild , OnInit, OnDestroy } from '@angular/core';
 import { Chart } from 'chart.js';
 import { Observable } from 'rxjs';
 import { BluetoothInstructions } from '../../services/bluetooth-instructions.service';
@@ -10,7 +10,7 @@ import { BluetoothInstructions } from '../../services/bluetooth-instructions.ser
   templateUrl: './sensor.page.html',
   styleUrls: ['./sensor.page.scss'],
 })
-export class SensorPage implements OnInit {
+export class SensorPage implements OnInit, OnDestroy {
 
   @ViewChild('lineCanvas',null) lineCanvas;
 
@@ -30,6 +30,10 @@ export class SensorPage implements OnInit {
     this.dataSensor = [];
     this.buildChart();
     this.bluetoothReceive();
+  }
+
+  ngOnDestroy(){
+    this.stopTimer();
   }
 
   buildChart() {
@@ -87,13 +91,6 @@ export class SensorPage implements OnInit {
     return labelArray;
   }
 
-  
-  addRandomData()
-  {
-    var data = Math.floor(Math.random() * this.Ymax);
-    this.addNewData(data);
-  }
-
   addNewData(data : number)
   {
     var value = +data * 100 / 1023 ; // implicit cast as number
@@ -102,7 +99,7 @@ export class SensorPage implements OnInit {
     this.lineChart.data.datasets.forEach((dataset) => 
     {
       if (dataset.data.length < this.limitData){
-        this.addData(dataset.data, value);
+        this.dataset.push(value);
       } else {
         this.shiftData(dataset.data, value);
       }
