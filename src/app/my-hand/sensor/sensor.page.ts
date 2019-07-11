@@ -99,7 +99,7 @@ export class SensorPage implements OnInit, OnDestroy {
     this.lineChart.data.datasets.forEach((dataset) => 
     {
       if (dataset.data.length < this.limitData){
-        this.dataset.push(value);
+        dataset.data.push(value);
       } else {
         this.shiftData(dataset.data, value);
       }
@@ -165,7 +165,6 @@ export class SensorPage implements OnInit, OnDestroy {
     let me = this;
     this.bluetooth.receive().subscribe(
       data=>{
-        //console.log(data);
         // Bluetooth command interpreter here
         var command = +data[0];
         switch(command)
