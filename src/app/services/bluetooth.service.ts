@@ -74,7 +74,13 @@ export class BluetoothService {
 
   public isConnected()
   {
-    return this.bluetoothSerial.isConnected();
+    if (this.bluetoothSerial.isConnected()){
+      this._isConnected = true;
+    }
+    else{
+      this._isConnected = false;
+    }
+    return this._isConnected;
   }
 
   public disconnect()
