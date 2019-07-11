@@ -1,3 +1,4 @@
+import { HeaderComponent } from './components/header/header.component';
 import { BluetoothInstructions } from './services/bluetooth-instructions.service';
 
 // plugins
@@ -49,7 +50,7 @@ import { InfosPageModule } from './my-hand/infos/infos.module';
 @NgModule({
   declarations: [
     AppComponent,
-    //HomePage
+    
   ],
 
   imports: [
@@ -99,7 +100,7 @@ import { InfosPageModule } from './my-hand/infos/infos.module';
     UserGuidePage,
 
     // Home
-    BluetoothConnectPage
+    BluetoothConnectPage,
   ],
 
   providers: [
