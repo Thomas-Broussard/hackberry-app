@@ -12,13 +12,16 @@ import { mergeMap, map } from 'rxjs/operators';
 export class BluetoothService {
 
   private PARSECHAR = ';';
+
   public deviceName: string = "";
   public deviceId: string = "";
-  public isConnected:boolean = false;
+  
   public listPairedDevices: any;
   public listUnpairedDevices: any;
-  public isScanning: boolean = false;
-  public isEnabled: boolean = true;
+
+  public _isConnected:boolean = false;
+  public _isScanning: boolean = false;
+  public _isEnabled: boolean = true;
 
   constructor(
     private bluetoothSerial: BluetoothSerial,
@@ -35,14 +38,14 @@ export class BluetoothService {
 
       },
       function() {
-        me.isEnabled = false;
+        me._isEnabled = false;
         me.gen.toastOK("Please enable Bluetooth");
       }
     );
   }
 
   public disable(){
-    this.isEnabled = false;
+    this._isEnabled = false;
   }
 
 
@@ -57,41 +60,40 @@ export class BluetoothService {
         {
           this.deviceName = device.name;
           this.deviceId = device.id;
-          this.isConnected = true;
+          this._isConnected = true;
           return true;
         } 
         else
         {
-          this.isConnected = false;
+          this._isConnected = false;
           return false;
         }
         
       }));
   }
 
+  public isConnected()
+  {
+    return this.bluetoothSerial.isConnected();
+  }
+
   public disconnect()
   {
     this.deviceName = "";
     this.deviceId = "";
-    this.isConnected = false;
+    this._isConnected = false;
     this.gen.toastTemp("Bluetooth disconnected", 2000);
   }
 
   public getConnectedDevice()
   {
     var device:any;
-    if(this.isConnected){
+    if(this._isConnected){
       device.id = this.deviceName;
       device.name = this.deviceId;
     }
     return device;
   }
-
-  public checkConnection()
-  {
-    return this.bluetoothSerial.isConnected();
-  }
-
 
   private scanPaired()
   {
@@ -110,19 +112,19 @@ export class BluetoothService {
   {
     let me = this;
     this.listUnpairedDevices = [];
-    this.isScanning = true;
+    this._isScanning = true;
     this.bluetoothSerial.discoverUnpaired().then
     (
         devices => {
             devices.forEach(function(device) {
               me.listUnpairedDevices.push(device);
             });
-            me.isScanning = false;
+            me._isScanning = false;
         }, 
         error => {
           me.gen.toastTemp(error, 2000);
           console.log(error);
-          me.isScanning = false;
+          me._isScanning = false;
         }
     );
   }
