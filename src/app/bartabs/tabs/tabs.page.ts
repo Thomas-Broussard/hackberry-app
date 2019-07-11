@@ -20,7 +20,10 @@ export class TabsPage implements OnInit, OnDestroy, AfterViewInit{
   currentTab : number = 0;
   maxTab : number = 3;
 
-  ngOnInit() { }
+  ngOnInit() 
+  { 
+    this.bluetooth.isConnected();
+  }
   
   ngAfterViewInit() {
     this.subscription = this.platform.backButton.subscribe(async () => {
