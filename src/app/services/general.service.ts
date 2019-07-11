@@ -44,6 +44,21 @@ export class GeneralService {
   }
 
 
+  async popup(payload: string)
+  {
+    const alert = await this.alertController.create({
+      header: payload,
+      buttons: [
+        {
+          text: 'OK',
+          role: 'cancel'
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   async closeApp()
   {
     const alert = await this.alertController.create({
