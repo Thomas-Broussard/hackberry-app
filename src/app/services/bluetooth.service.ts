@@ -12,6 +12,7 @@ import { mergeMap, map } from 'rxjs/operators';
 export class BluetoothService {
 
   private PARSECHAR = ';';
+  private timer: any;
 
   public deviceName: string = "";
   public deviceId: string = "";
@@ -52,7 +53,7 @@ export class BluetoothService {
   public connect(device : any): Observable<boolean>
   {
 
-      this.gen.toastTemp("Connecting to " + device.name + "...", 4000);
+      this.gen.toastTemp("Connecting to " + device.name + "...", 2000);
       
       return this.bluetoothSerial.connect(device.id).pipe(
         map((data) => {
@@ -74,12 +75,6 @@ export class BluetoothService {
 
   public isConnected()
   {
-    if (this.bluetoothSerial.isConnected()){
-      this._isConnected = true;
-    }
-    else{
-      this._isConnected = false;
-    }
     return this._isConnected;
   }
 
@@ -138,10 +133,12 @@ export class BluetoothService {
   public scan(){
     let me = this;
     this.bluetoothSerial.isEnabled().then(
+      // connected
       function() {
         me.scanPaired();
         me.scanUnpaired();
       },
+      // not connected
       function() {
         me.enable();
       }
@@ -171,6 +168,34 @@ export class BluetoothService {
     else{
       this.write(command);
     }
+  }
+
+
+
+  public startChecking()
+  {
+    let me = this;
+    this.timer = setInterval( function(){me.callbackChecking()} , 3 * 1000); // check every 3s
+  }
+
+  public stopChecking()
+  {
+    clearInterval(this.timer);
+  }
+
+  private callbackChecking()
+  {
+    let me = this;
+    this.bluetoothSerial.isConnected().then(
+      function(){
+        me._isConnected = true;
+      },
+      function(){
+        me._isConnected = false;
+        me.stopChecking();
+        me.gen.popup("Hand disconnected");
+      }
+    );
   }
 
 
