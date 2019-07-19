@@ -1,4 +1,3 @@
-import { HeaderComponent } from './components/header/header.component';
 import { BluetoothInstructions } from './services/bluetooth-instructions.service';
 
 // plugins
