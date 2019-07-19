@@ -11,7 +11,7 @@
         <ion-list text-center >
             <ion-img class="centered" style="width: 50px; height: 50px;" src="assets/img/my-hand/icon_thumb.png"></ion-img>
             <ion-label color="success">Thumb</ion-label>
-        <ion-range (ionChange)="moveThumb($event)"  debounce="500" min="{{ thumb.min }}" max="{{ thumb.max }}" step="5" value="{{thumb.current}}" snaps pin color="success">
+        <ion-range (ionChange)="moveThumb($event)"  debounce="500" min="{{ thumb.min }}" max="{{ thumb.max }}" value="{{thumb.current}}" snaps pin color="success">
           <ion-label color="success" slot="start">{{ thumb.min }}°</ion-label>
           <ion-label color="success" slot="end">{{ thumb.max }}°</ion-label>
         </ion-range>
@@ -21,7 +21,7 @@
       <ion-list text-center >
           <ion-img class="centered" style="width: 50px; height: 50px;" src="assets/img/my-hand/icon_index.png"></ion-img>
           <ion-label color="primary">Index</ion-label>
-      <ion-range (ionChange)="moveIndex($event)"  debounce="500"  min="{{ index.min }}" max="{{ index.max }}" step="5" value="{{index.current}}" snaps pin color="primary">
+      <ion-range (ionChange)="moveIndex($event)"  debounce="500"  min="{{ index.min }}" max="{{ index.max }}" value="{{index.current}}" snaps pin color="primary">
         <ion-label color="primary" slot="start">{{ index.min }}°</ion-label>
         <ion-label color="primary" slot="end">{{ index.max }}°</ion-label>
       </ion-range>
@@ -30,7 +30,7 @@
     <ion-list text-center >
         <ion-img class="centered" style="width: 50px; height: 50px;" src="assets/img/my-hand/icon_fingers.png"></ion-img>
         <ion-label color="danger">Fingers</ion-label>
-    <ion-range (ionChange)="moveFingers($event)"  debounce="500" min="{{ fingers.min }}" max="{{ fingers.max }}" step="5" value="{{fingers.current}}" snaps pin color="danger">
+    <ion-range (ionChange)="moveFingers($event)"  debounce="500" min="{{ fingers.min }}" max="{{ fingers.max }}"  value="{{fingers.current}}" snaps pin color="danger">
       <ion-label color="danger" slot="start"> {{ fingers.min }}°</ion-label>
       <ion-label color="danger" slot="end">{{ fingers.max }}°</ion-label>
     </ion-range>
