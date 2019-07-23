@@ -1,10 +1,25 @@
+/**
+ * --------------------------------------------
+ * Project : Hackberry App
+ * Author : Thomas Broussard
+ * --------------------------------------------
+ * Name : BluetoothService
+ * Type : Service
+ * --------------------------------------------
+ * Description : 
+ * List of Methods used to interact with 
+ * an Hackberry hand through Bluetooth
+ * 
+ * --------------------------------------------
+ */
+
 import { BluetoothInstructions } from './bluetooth-instructions.service';
 import { GeneralService } from './general.service';
 import { NavController } from '@ionic/angular';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { mergeMap, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +47,9 @@ export class BluetoothService {
   ) { }
 
 
+  /**
+   * Enable the bluetooth service
+   */
   public enable(){
     let me = this;
     this.bluetoothSerial.enable().then(
@@ -45,11 +63,18 @@ export class BluetoothService {
     );
   }
 
+  /**
+   * Disable the bluetooth service
+   */
   public disable(){
     this._isEnabled = false;
   }
 
-
+  /**
+   * Try to connect to a device
+   * @param device bluetooth device to connect
+   * @return (Observable) true if connected ; false otherwise 
+   */
   public connect(device : any): Observable<boolean>
   {
 
@@ -73,11 +98,18 @@ export class BluetoothService {
       }));
   }
 
+  /**
+   * Check if bluetooth is connected to a device
+   * return true if connected ; false otherwise
+   */
   public isConnected()
   {
     return this._isConnected;
   }
 
+  /**
+   * Disconnect the bluetooth from device
+   */
   public disconnect()
   {
     this.deviceName = "";
@@ -86,6 +118,10 @@ export class BluetoothService {
     this.gen.toastTemp("Bluetooth disconnected", 2000);
   }
 
+  /**
+   * Get name and MAC address of the connected device
+   * @return device object : device.name and device.id
+   */
   public getConnectedDevice()
   {
     var device:any;
@@ -96,6 +132,10 @@ export class BluetoothService {
     return device;
   }
 
+  /**
+   * retrieve all the paired devices
+   * @return list of paired devices
+   */
   private scanPaired()
   {
     let me = this;
@@ -109,6 +149,10 @@ export class BluetoothService {
     );
   }
 
+  /**
+   * discover all the unpaired devices
+   * @return list of unpaired devices discovered
+   */
   private scanUnpaired()
   {
     let me = this;
@@ -130,6 +174,9 @@ export class BluetoothService {
     );
   }
 
+  /**
+   * Scan the paired and unpaired devices
+   */
   public scan(){
     let me = this;
     this.bluetoothSerial.isEnabled().then(
@@ -145,11 +192,18 @@ export class BluetoothService {
     );
   }
 
+  /**
+   * send data to the device
+   * @param data data to send
+   */
   public write(data)
   {
     this.bluetoothSerial.write(data + "\r\n");
   }
 
+  /**
+   * method used to receive the data from the devices
+   */
   public receive(): Observable<any>
   {
     return this.bluetoothSerial.subscribe('\r\n').pipe(
@@ -160,6 +214,11 @@ export class BluetoothService {
     );
   }
 
+  /**
+   * Send a command to the hackberry hand 
+   * @param command command to send 
+   * @param data extra parameters (if required)
+   */
   public writeCmd(command,data = null)
   {
     if(data != null){
@@ -170,26 +229,35 @@ export class BluetoothService {
     }
   }
 
-
-
+  /**
+   * Launch a timer to check regularly if device is still connected
+   */
   public startChecking()
   {
     let me = this;
     this.timer = setInterval( function(){me.callbackChecking()} , 3 * 1000); // check every 3s
   }
 
+  /**
+   * Stop the checking timer
+   */
   public stopChecking()
   {
     clearInterval(this.timer);
   }
 
+  /**
+   * check if device is still connected or not
+   */
   private callbackChecking()
   {
     let me = this;
     this.bluetoothSerial.isConnected().then(
+      // device connected
       function(){
         me._isConnected = true;
       },
+      // device disconnected
       function(){
         me._isConnected = false;
         me.stopChecking();
