@@ -1,3 +1,4 @@
+import { HackberryDevice } from './../class/HackberryDevice';
 /**
  * --------------------------------------------
  * Project : Hackberry App
@@ -17,17 +18,20 @@ import { BluetoothInstructions } from './bluetooth-instructions.service';
 import { GeneralService } from './general.service';
 import { NavController } from '@ionic/angular';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
-import { Injectable } from '@angular/core';
+import { Injectable, Version } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class BluetoothService {
 
   private PARSECHAR = ';';
   private timer: any;
+
+  private currentDevice: HackberryDevice = new HackberryDevice();
 
   public deviceName: string = "";
   public deviceId: string = "";
@@ -84,8 +88,8 @@ export class BluetoothService {
         map((data) => {
         if(this.bluetoothSerial.isConnected())
         {
-          this.deviceName = device.name;
-          this.deviceId = device.id;
+          this.currentDevice.setName(device.name);
+          this.currentDevice.setId(device.id);
           this._isConnected = true;
           return true;
         } 
@@ -94,7 +98,6 @@ export class BluetoothService {
           this._isConnected = false;
           return false;
         }
-        
       }));
   }
 
@@ -112,8 +115,7 @@ export class BluetoothService {
    */
   public disconnect()
   {
-    this.deviceName = "";
-    this.deviceId = "";
+    this.currentDevice.clear();
     this._isConnected = false;
     this.gen.toastTemp("Bluetooth disconnected", 2000);
   }
@@ -124,12 +126,21 @@ export class BluetoothService {
    */
   public getConnectedDevice()
   {
+    /*
     var device:any;
     if(this._isConnected){
-      device.id = this.deviceName;
-      device.name = this.deviceId;
+      device.id = this.deviceId;
+      device.name = this.deviceName;
     }
     return device;
+    */
+
+    if(this._isConnected){
+      return this.currentDevice;
+    }
+    else{
+      return null;
+    }
   }
 
   /**
@@ -264,6 +275,43 @@ export class BluetoothService {
         me.gen.popup("Hand disconnected");
       }
     );
+  }
+
+  /**
+   * Get all general infos on the Hackberry Hand used
+   */
+  private retrieveInfos(){
+    let me = this;
+    this.receive().subscribe(
+      data=>{
+        // Bluetooth command interpreter here
+        var command = +data[0];
+        switch(command)
+        {
+          case me.cmd.CMD_GEN_VERSION : 
+            me.currentDevice.setVersion(data[1]);
+            me.writeCmd(me.cmd.CMD_SRV_GET_HAND);
+          break;
+
+          case me.cmd.CMD_SRV_GET_HAND : 
+            if (data[1] == '1'){
+              me.currentDevice.setHand("Right");
+            }
+            else{
+              me.currentDevice.setHand("Left");
+            }
+            me.writeCmd(me.cmd.CMD_GEN_BOARD);
+          break;
+
+          case me.cmd.CMD_GEN_BOARD : 
+            me.currentDevice.setBoard(data[1]);
+          break;
+          
+          default:break;
+        }
+      }
+    );
+    this.writeCmd(this.cmd.CMD_GEN_VERSION);
   }
 
 

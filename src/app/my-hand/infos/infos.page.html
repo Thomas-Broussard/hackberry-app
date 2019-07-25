@@ -3,39 +3,43 @@
       <ion-buttons slot="start">
           <ion-back-button></ion-back-button>
         </ion-buttons>
-    <ion-title>infos</ion-title>
+    <ion-title>General Infos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <ion-item detail="false">
         <ion-label>Bluetooth </ion-label>
-        <ion-input class="right-align" value="Hackberry"></ion-input>
+        <ion-input class="right-align" value="{{ device.name }}"></ion-input>
       </ion-item>
 
       <ion-item detail="false">
           <ion-label>MAC</ion-label>
-          <ion-label class="right-align">00:18:E4:34:BF:CD</ion-label>
+          <ion-label class="right-align">{{ device.id }}</ion-label>
         </ion-item>
 
         <ion-item detail="false">
             <ion-label>Battery</ion-label>
-            <ion-label class="right-align">100%</ion-label>
+            <ion-label class="right-align">{{ batteryLevel }} %</ion-label>
           </ion-item>
   
 
         <ion-item detail="false">
             <ion-label >Board</ion-label>
-            <ion-label class="right-align">Mk2</ion-label>
+            <ion-label class="right-align">{{ device.board }}</ion-label>
           </ion-item>
           
     <ion-item detail="false">
       <ion-label >Firmware</ion-label>
-      <ion-label class="right-align">1.0.0</ion-label>
+      <ion-label class="right-align">{{ device.version }}</ion-label>
     </ion-item>
 
     <ion-item detail="false">
-        <ion-label >Device type</ion-label>
-        <ion-label class="right-align">Right Hand</ion-label>
+        <ion-label >Hand</ion-label>
+        <ion-label class="right-align">{{ device.hand }}</ion-label>
       </ion-item>
-</ion-content>
+      <ion-item detail="false">
+      <ion-button color="primary" (click)="askInfos()"> refresh</ion-button>
+        </ion-item>
+
+    </ion-content>
