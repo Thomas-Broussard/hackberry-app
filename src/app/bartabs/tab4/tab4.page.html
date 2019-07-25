@@ -7,6 +7,15 @@
   </ion-header>
   
   <ion-content>
+      <ion-card class="welcome-card">
+          <ion-card-header>
+              <ion-img class="circle" style="width: 180px; height: 180px;" src="/assets/img/about/logo-hackberryapp.png" ></ion-img>
+          </ion-card-header>
+          <ion-card-content>
+              <p style="text-align: center;"><i> Version {{ gen.APP_VERSION }}</i></p>
+          </ion-card-content>
+        </ion-card>
+
       <mat-accordion>
           <mat-expansion-panel>
             <mat-expansion-panel-header>
@@ -14,20 +23,39 @@
                 <strong>My Hackberry App</strong>
               </mat-panel-title>
             </mat-expansion-panel-header>
-           
-            <ion-img class="circle" style="width: 180px; height: 180px;" src="/assets/img/about/logo-hackberryapp.png" ></ion-img>
-            <p style="text-align: center;"><i> Version {{ gen.APP_VERSION }}</i></p>
-            <br/>
-            
-              <ion-card>
+                <ion-card>
                   <ion-card-header>
-                  </ion-card-header>
+                      <ion-card-title>Avant-Propos</ion-card-title>
+                    </ion-card-header>
                   <ion-card-content class="ion-text-center">
-                      <p>{{ 'developped-by' | translate }} Thomas Broussard</p>
-                      <p>e-Nable France - 2019</p>
-                      <ion-img class="circle" style="width: 80px; height: 80px;" src="/assets/img/about/author.jpg" ></ion-img>
+                      <p>My hackberry App est une application destinée aux fabricants et utilisateurs des mains Hackberry.</p>
+                      <p>Son développement est réalisé par des bénévoles de l'association e-Nable France.</p>
                   </ion-card-content>
                 </ion-card>
+
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-title>Auteur</ion-card-title>
+                      </ion-card-header>
+                    <ion-card-content class="ion-text-center">
+                        <p>{{ 'developped-by' | translate }} Thomas Broussard</p>
+                        <p>e-Nable France - 2019</p>
+                        <ion-img class="circle" style="width: 80px; height: 80px;" src="/assets/img/about/author.jpg" ></ion-img>
+                    </ion-card-content>
+                  </ion-card>
+
+                <ion-card>
+                    <ion-card-header>
+                      <ion-card-title>{{ 'photo-credits' | translate}}</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        <ul> 
+                            <li>Nico Hub </li>
+                            <li>Thierry Oquidam</li>
+                            <li>Exiii Inc</li>
+                        </ul>
+                    </ion-card-content>
+                  </ion-card>
 
             
 
