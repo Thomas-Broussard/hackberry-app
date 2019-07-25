@@ -8,38 +8,23 @@
   </ion-header>
   
   <ion-content>
+    <!--
     <ion-card class="welcome-card">
         <ion-card-content>
             <ion-img src="/assets/img/home/title-img.jpg"></ion-img>
         </ion-card-content>
-      <ion-card-header>
-        <ion-card-subtitle></ion-card-subtitle>
-        <ion-card-title> Welcome !  </ion-card-title>
-      </ion-card-header>
-      
     </ion-card>
+    -->
     <ion-list lines="none">
+      
+      <ion-item  detail="false">
+      <ion-img src="/assets/img/home/title-img.jpg"></ion-img>
+      </ion-item>
   
-  
-        <ion-item *ngIf="!bluetooth._isConnected" >
-          <ion-icon slot="start" color="danger" name="close" ></ion-icon>
-          <ion-label>{{ 'not-connected' | translate }} </ion-label>
-        </ion-item>
-
+      <!-- Connect to bluetooth -->
       <ion-item *ngIf="!bluetooth._isConnected" routerLink="/bluetooth-connect" routerDirection="forward" detail="true">
         <ion-icon slot="start" color="primary" name="bluetooth" ></ion-icon>
         <ion-label>{{ 'connect' | translate }} Hackberry</ion-label>
-      </ion-item>
-
-
-
-
-      <ion-item *ngIf="bluetooth._isConnected">  
-      <ion-icon slot="start" color="success" name="checkmark" ></ion-icon>
-      <ion-label>
-          <h3> {{ 'connected' | translate }} - {{ bluetooth.deviceName }}</h3>
-          <p>{{ bluetooth.deviceId }}</p>
-      </ion-label>
       </ion-item>
 
       <ion-item *ngIf="bluetooth._isConnected" detail="true" (click)="bluetooth.disconnect()">
@@ -48,9 +33,19 @@
       </ion-item>
 
 
-  
-      
-    
+      <!-- Bluetooth status -->
+      <ion-item *ngIf="!bluetooth._isConnected" >
+        <ion-icon slot="start" color="danger" name="close" ></ion-icon>
+        <ion-label>{{ 'not-connected' | translate }} </ion-label>
+      </ion-item>
+
+      <ion-item *ngIf="bluetooth._isConnected">  
+        <ion-icon slot="start" color="success" name="checkmark" ></ion-icon>
+        <ion-label>
+            <h3> {{ 'connected' | translate }} - {{ bluetooth.currentDevice.getName() }}</h3>
+            <p>{{ bluetooth.currentDevice.getId() }}</p>
+        </ion-label>
+        </ion-item>
     </ion-list>
   </ion-content>
 
