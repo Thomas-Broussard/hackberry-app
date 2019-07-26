@@ -37,7 +37,6 @@ export class BluetoothConnectPage implements OnInit {
           console.log("Successfully Connected ! ");
           this.gen.toastTemp("Successfully Connected ! ", 2000);
           this.gen.finish();
-          this.bluetooth.startChecking();
         } else {
           console.log("Connection Failure...");
           this.gen.toastOK("Error during connection. Please retry");
