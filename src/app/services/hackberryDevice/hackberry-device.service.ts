@@ -14,16 +14,6 @@ export class HackberryDevice {
 
   constructor() { }
 
-
-  public init(){
-    this.setName("Unknown");
-    this.setId("Unknown");
-    this.setVersion("???");
-    this.setBoard("Unknown");
-    this.setHand("Unknown");
-    this.battery = -1;
-  }
-
   public clear(){
     this.id = null;
     this.name = null;
