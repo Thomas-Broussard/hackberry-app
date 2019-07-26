@@ -42,6 +42,7 @@
     "cordova-plugin-ble-central": "^1.2.2",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-video-player": "git+https://github.com/moust/cordova-plugin-videoplayer.git",
+    "cordova-uglify": "^0.3.3",
     "core-js": "^2.5.4",
     "gulp": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
