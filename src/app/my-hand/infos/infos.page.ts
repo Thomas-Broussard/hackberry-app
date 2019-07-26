@@ -1,4 +1,4 @@
-import { HackberryDevice } from './../../class/HackberryDevice';
+import { HackberryDevice } from './../../services/hackberryDevice/hackberry-device.service';
 import { BluetoothInstructions } from './../../services/bluetooth-instructions.service';
 import { BluetoothService } from './../../services/bluetooth.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -9,22 +9,15 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   styleUrls: ['./infos.page.scss'],
 })
 export class InfosPage implements OnInit, OnDestroy {
-
-  device : HackberryDevice = new HackberryDevice();
   
-  batteryLevel :number = 0;
   timer;
-
-
   constructor(
     public bluetooth : BluetoothService,
+    public device: HackberryDevice,
     public cmd : BluetoothInstructions
   ) { }
 
   ngOnInit() {
-
-    this.device.init();
-
     this.receiveInfos();
     this.askInfos();
 
@@ -40,8 +33,6 @@ export class InfosPage implements OnInit, OnDestroy {
 
 
   askInfos(){
-    this.device = this.bluetooth.getConnectedDevice();
-
     this.bluetooth.writeCmd(this.cmd.CMD_GEN_VERSION);
   }
 
@@ -54,7 +45,7 @@ export class InfosPage implements OnInit, OnDestroy {
         switch(command)
         {
           case me.cmd.CMD_GEN_BATTERY : 
-            me.batteryLevel = data[1];
+            me.device.setBattery(data[1]);
           break;
 
           case me.cmd.CMD_GEN_VERSION : 

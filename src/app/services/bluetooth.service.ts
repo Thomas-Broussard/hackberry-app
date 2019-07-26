@@ -1,4 +1,4 @@
-import { HackberryDevice } from './../class/HackberryDevice';
+import { HackberryDevice } from './hackberryDevice/hackberry-device.service';
 /**
  * --------------------------------------------
  * Project : Hackberry App
@@ -32,8 +32,6 @@ export class BluetoothService {
   private PARSECHAR = ';';
   private timer: any;
 
-  private currentDevice: HackberryDevice = new HackberryDevice();
-
   public deviceName: string = "";
   public deviceId: string = "";
   
@@ -48,6 +46,7 @@ export class BluetoothService {
     private bluetoothSerial: BluetoothSerial,
     private cmd : BluetoothInstructions,
     private gen : GeneralService,
+    public currentDevice :HackberryDevice,
     public navCtrl: NavController,
     private router: Router,
   ) { }
@@ -120,29 +119,6 @@ export class BluetoothService {
     this.currentDevice.clear();
     this._isConnected = false;
     this.gen.toastTemp("Bluetooth disconnected", 2000);
-  }
-
-  /**
-   * Get name and MAC address of the connected device
-   * @return device object : device.name and device.id
-   */
-  public getConnectedDevice()
-  {
-    /*
-    var device:any;
-    if(this._isConnected){
-      device.id = this.deviceId;
-      device.name = this.deviceName;
-    }
-    return device;
-    */
-
-    if(this._isConnected){
-      return this.currentDevice;
-    }
-    else{
-      return null;
-    }
   }
 
   /**
