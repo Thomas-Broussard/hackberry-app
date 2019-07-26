@@ -5,21 +5,21 @@
   </ion-buttons>
 
     <ion-title>Sensor</ion-title>
-    <ion-icon *ngIf="bluetooth.batteryWarning" slot="end"name="battery-dead" color="danger"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-card-content>
-      <canvas #lineCanvas height="100" width="100">
-      </canvas>
-      <br />
-      <ion-button *ngIf="isPlaying" color="warning" (click)="onClickPause()"><ion-icon name="pause"></ion-icon></ion-button>
-      <ion-button *ngIf="!isPlaying" color="success" (click)="onClickPlay()"><ion-icon name="play"></ion-icon></ion-button>
-
-      <ion-button color="danger" (click)="onClickClear()">Clear</ion-button>
-    </ion-card-content>
-  </ion-card>
+  <canvas #lineCanvas height="100" width="100">
+    </canvas>
 
 </ion-content>
+
+<ion-footer no-shadow>
+	<ion-toolbar position="bottom">
+      <ion-button expand="block" *ngIf="isPlaying" color="warning" (click)="onClickPause()"><ion-icon name="pause"></ion-icon></ion-button>
+      <ion-button expand="block" *ngIf="!isPlaying" color="success" (click)="onClickPlay()"><ion-icon name="play"></ion-icon></ion-button>
+
+      <ion-button expand="block" color="danger" (click)="onClickClear()">Clear</ion-button>
+		<ion-button expand="block" color="primary" (click)="onClickCalib()">Calibrate</ion-button>
+	</ion-toolbar>
+</ion-footer>

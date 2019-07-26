@@ -17,7 +17,7 @@ export class SensorPage implements OnInit, OnDestroy {
   lineChart: any;
   dataSensor: number[];
   limitData: number = 100;
-  Ymax: number = 100;
+  Ymax: number = 1024;
   timer: any;
   isPlaying: boolean = false;
 
@@ -73,9 +73,11 @@ export class SensorPage implements OnInit, OnDestroy {
             yAxes: [{
                 ticks: {
                     min: 0,
-                    max: this.Ymax
+                    max: this.Ymax,
+                    stepSize: 256,
                 }
-            }], 
+            }],
+            xAxes: [ { gridLines: { display: false } } ] 
         }
     }
     });
@@ -93,7 +95,7 @@ export class SensorPage implements OnInit, OnDestroy {
 
   addNewData(data : number)
   {
-    var value = +data * 100 / 1023 ; // implicit cast as number
+    var value = +data ;//* 100 / 1023 ; // implicit cast as number
     //console.log(value);
 
     this.lineChart.data.datasets.forEach((dataset) => 
@@ -156,6 +158,10 @@ export class SensorPage implements OnInit, OnDestroy {
 
   onClickClear(){
     this.clearData();
+  }
+
+  onClickCalib(){
+    //this.bluetooth.writeCmd(this.cmd.CMD_SENS_CALIB);
   }
 
 
