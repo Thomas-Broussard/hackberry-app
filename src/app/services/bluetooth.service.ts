@@ -31,6 +31,7 @@ export class BluetoothService {
 
   private PARSECHAR = ';';
   private timer: any;
+  private timerTX: any;
 
   public deviceName: string = "";
   public deviceId: string = "";
@@ -41,6 +42,9 @@ export class BluetoothService {
   public _isConnected:boolean = false;
   public _isScanning: boolean = false;
   public _isEnabled: boolean = true;
+
+  private bufferTX: any = [];
+  private TXisOK: boolean = false;
 
   constructor(
     private bluetoothSerial: BluetoothSerial,
@@ -92,11 +96,21 @@ export class BluetoothService {
           this.currentDevice.setName(device.name);
           this.currentDevice.setId(device.id);
           this._isConnected = true;
+
+          // start the timers
+          this.startChecking();
+          this.startTX();
+
           return true;
         } 
         else
         {
           this._isConnected = false;
+
+          // stop the timers (not needed ?)
+          this.stopChecking();
+          this.stopTX();
+
           return false;
         }
       }));
@@ -119,6 +133,10 @@ export class BluetoothService {
     this.currentDevice.clear();
     this._isConnected = false;
     this.gen.toastTemp("Bluetooth disconnected", 2000);
+
+    // stop the timers
+    this.stopChecking();
+    this.stopTX();
   }
 
   /**
@@ -182,15 +200,6 @@ export class BluetoothService {
   }
 
   /**
-   * send data to the device
-   * @param data data to send
-   */
-  public write(data)
-  {
-    this.bluetoothSerial.write(data + "\r\n");
-  }
-
-  /**
    * method used to receive the data from the devices
    */
   public receive(): Observable<any>
@@ -198,6 +207,8 @@ export class BluetoothService {
     return this.bluetoothSerial.subscribe('\r\n').pipe(
       map((data) => { 
         var result = data.split(this.PARSECHAR); 
+        this.bufferTX.shift(); // on supprime la commande effectuée
+        this.TXisOK = true; // on indique qu'on peut envoyer la nouvelle commande (ou répéter la précédente)
         return result;
       })
     );
@@ -210,11 +221,23 @@ export class BluetoothService {
    */
   public writeCmd(command,data = null)
   {
-    if(data != null){
-      this.write(command + this.PARSECHAR + data);
+    if(data != null)
+    {
+      this.bufferTX.push(
+        {
+          "cmd":command,
+          "data":command + this.PARSECHAR + data + "\r\n"
+        }
+      )
     }
-    else{
-      this.write(command);
+    else
+    {
+      this.bufferTX.push(
+        {
+          "cmd":command,
+          "data":command + "\r\n"
+        }
+      )
     }
   }
 
@@ -234,6 +257,7 @@ export class BluetoothService {
   {
     clearInterval(this.timer);
   }
+  
 
   /**
    * check if device is still connected or not
@@ -257,47 +281,39 @@ export class BluetoothService {
         {
           me.navCtrl.navigateRoot('');
         }
-        
       }
     );
+  }
+
+
+  /**
+   * Launch a timer to check regularly if device is still connected
+   */
+  public startTX()
+  {
+    let me = this;
+    this.TXisOK = true;
+    this.timerTX = setInterval( function(){me.callbackTX()} , 20); // check every 20ms
   }
 
   /**
-   * Get all general infos on the Hackberry Hand used
+   * Stop the checking timer
    */
-  private retrieveInfos(){
-    let me = this;
-    this.receive().subscribe(
-      data=>{
-        // Bluetooth command interpreter here
-        var command = +data[0];
-        switch(command)
-        {
-          case me.cmd.CMD_GEN_VERSION : 
-            me.currentDevice.setVersion(data[1]);
-            me.writeCmd(me.cmd.CMD_SRV_GET_HAND);
-          break;
-
-          case me.cmd.CMD_SRV_GET_HAND : 
-            if (data[1] == '1'){
-              me.currentDevice.setHand("Right");
-            }
-            else{
-              me.currentDevice.setHand("Left");
-            }
-            me.writeCmd(me.cmd.CMD_GEN_BOARD);
-          break;
-
-          case me.cmd.CMD_GEN_BOARD : 
-            me.currentDevice.setBoard(data[1]);
-          break;
-          
-          default:break;
-        }
-      }
-    );
-    this.writeCmd(this.cmd.CMD_GEN_VERSION);
+  public stopTX()
+  {
+    this.TXisOK = false;
+    clearInterval(this.timerTX);
   }
-
-
+  
+  /**
+   * check if device is still connected or not
+   */
+  private callbackTX()
+  {
+    if(this.TXisOK && this._isConnected && this.bufferTX.length > 0)
+    {
+      this.TXisOK = false;
+      this.bluetoothSerial.write(this.bufferTX[0].data);
+    }
+  }
 }

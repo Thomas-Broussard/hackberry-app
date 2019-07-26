@@ -33,7 +33,10 @@ export class InfosPage implements OnInit, OnDestroy {
 
 
   askInfos(){
+    this.bluetooth.writeCmd(this.cmd.CMD_GEN_BATTERY);
+    this.bluetooth.writeCmd(this.cmd.CMD_GEN_BOARD);
     this.bluetooth.writeCmd(this.cmd.CMD_GEN_VERSION);
+    this.bluetooth.writeCmd(this.cmd.CMD_SRV_GET_HAND);
   }
 
   receiveInfos(){
@@ -50,7 +53,6 @@ export class InfosPage implements OnInit, OnDestroy {
 
           case me.cmd.CMD_GEN_VERSION : 
             me.device.setVersion(data[1]);
-            me.bluetooth.writeCmd(me.cmd.CMD_SRV_GET_HAND);
           break;
 
           case me.cmd.CMD_SRV_GET_HAND : 
@@ -60,7 +62,6 @@ export class InfosPage implements OnInit, OnDestroy {
           else{
             me.device.setHand("Left");
           }
-          me.bluetooth.writeCmd(me.cmd.CMD_GEN_BOARD);
           break;
 
           case me.cmd.CMD_GEN_BOARD : 
