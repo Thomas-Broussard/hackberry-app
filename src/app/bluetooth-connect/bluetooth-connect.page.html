@@ -33,8 +33,8 @@
   </ion-item>
 
   <br/>
-  <ion-button *ngIf="!bluetooth.isScanning" expand="block" color="primary" (click)="bluetooth.scan()">Scan</ion-button>
+  <ion-button *ngIf="!bluetooth._isScanning" expand="block" color="primary" (click)="bluetooth.scan()">Scan</ion-button>
 
   <br/>
-  <ion-spinner *ngIf="bluetooth.isScanning" name="crescent"></ion-spinner>
+  <ion-spinner *ngIf="bluetooth._isScanning" name="crescent"></ion-spinner>
 </ion-content>
