@@ -21,6 +21,7 @@ import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 import { Injectable, Version } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,8 @@ export class BluetoothService {
     private bluetoothSerial: BluetoothSerial,
     private cmd : BluetoothInstructions,
     private gen : GeneralService,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private router: Router,
   ) { }
 
 
@@ -273,6 +275,13 @@ export class BluetoothService {
         me._isConnected = false;
         me.stopChecking();
         me.gen.popup("Hand disconnected");
+
+        // return to home if user was on hand driving pages
+        if (me.router.url.includes('my-hand'))
+        {
+          me.navCtrl.navigateRoot('');
+        }
+        
       }
     );
   }
