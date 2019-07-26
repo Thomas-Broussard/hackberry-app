@@ -1,9 +1,18 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+
 export class HackberryDevice {
   private id : string;
   private name : string;
   private version : string;
   private board : string;
   private hand : string;
+  private battery : number;
+
+  constructor() { }
 
 
   public init(){
@@ -12,6 +21,7 @@ export class HackberryDevice {
     this.setVersion("???");
     this.setBoard("Unknown");
     this.setHand("Unknown");
+    this.battery = -1;
   }
 
   public clear(){
@@ -20,6 +30,7 @@ export class HackberryDevice {
     this.version = null;
     this.board = null;
     this.hand = null;
+    this.battery = -1;
   }
   /*
   -------------------------
@@ -89,5 +100,25 @@ export class HackberryDevice {
  public setHand(hand)
  {
    this.hand = hand;
+ }
+
+ /*
+  -------------------------
+  ID (mac address)
+  -------------------------
+  */
+ public getBattery()
+ {
+   return this.battery;
+ }
+ public setBattery(battery)
+ {
+   if (battery > 100 || battery < 0){
+    this.battery = -1;
+   }
+   else
+   {
+     this.battery = battery;
+   }
  }
 }
