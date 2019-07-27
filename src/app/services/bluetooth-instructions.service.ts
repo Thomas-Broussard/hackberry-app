@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 export class BluetoothInstructions {
 
+	public CMD_ERROR: number = -1; // error received
 	//-----------------------------------
 	//COMMAND LIST GEN
 	//-----------------------------------
@@ -34,14 +35,16 @@ export class BluetoothInstructions {
 	public CMD_SRV_SET_SPEED:number = 21; 	// Set the motors speed.
 	public CMD_SRV_GET_SPEED:number = 22; 	// Get the motors speed.
 	public CMD_SRV_TEST:number = 23; 	// Launch the test procedure for motors.
+	public CMD_SRV_ENABLE:number = 24; 	// enable move drived by sensor.
+	public CMD_SRV_DISABLE:number = 25; 	// disable move drived by sensor.
 
 	//-----------------------------------
 	//COMMAND LIST SENS
 	//-----------------------------------
-	public CMD_SENS_GET_VALUE:number = 24; 	// get current sensor value.
-	public CMD_SENS_SET_TYPE:number = 25; 	// set type of sensor used (IR,EMG,etc…).
-	public CMD_SENS_GET_TYPE:number = 26; 	// get type of sensor used (IR,EMG,etc…).
-	public CMD_SENS_CALIB:number = 27; 	// launch sensor calibration.
+	public CMD_SENS_GET_VALUE:number = 26; 	// get current sensor value.
+	public CMD_SENS_SET_TYPE:number = 27; 	// set type of sensor used (IR,EMG,etc…).
+	public CMD_SENS_GET_TYPE:number = 28; 	// get type of sensor used (IR,EMG,etc…).
+	public CMD_SENS_CALIB:number = 29; 	// launch sensor calibration.
 
 	constructor() { }
 }

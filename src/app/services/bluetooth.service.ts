@@ -293,7 +293,7 @@ export class BluetoothService {
   {
     let me = this;
     this.TXisOK = true;
-    this.timerTX = setInterval( function(){me.callbackTX()} , 20); // check every 20ms
+    this.timerTX = setInterval( function(){me.callbackTX()} , 10); // check every 10ms
   }
 
   /**

@@ -1,3 +1,4 @@
+import { GeneralService } from './../../services/general.service';
 import { BluetoothService } from './../../services/bluetooth.service';
 import { Component, ViewChild , OnInit, OnDestroy } from '@angular/core';
 import { Chart } from 'chart.js';
@@ -19,14 +20,18 @@ export class SensorPage implements OnInit, OnDestroy {
   limitData: number = 100;
   Ymax: number = 1024;
   timer: any;
+
   isPlaying: boolean = false;
+  isMoving: boolean = false;
 
   constructor(
     public bluetooth : BluetoothService,
-    public cmd : BluetoothInstructions
+    public cmd : BluetoothInstructions,
+    public gen : GeneralService
   ) { }
 
   ngOnInit() {
+    this.bluetooth.writeCmd(this.cmd.CMD_SRV_DISABLE);
     this.dataSensor = [];
     this.buildChart();
     this.bluetoothReceive();
@@ -150,7 +155,7 @@ export class SensorPage implements OnInit, OnDestroy {
 
   onClickPlay()
   {
-    this.startTimer(100);
+    this.startTimer(200);
   }
   onClickPause(){
     this.stopTimer();
@@ -161,7 +166,21 @@ export class SensorPage implements OnInit, OnDestroy {
   }
 
   onClickCalib(){
-    //this.bluetooth.writeCmd(this.cmd.CMD_SENS_CALIB);
+    this.onClickPause();
+    this.bluetooth.writeCmd(this.cmd.CMD_SENS_CALIB);
+    this.gen.popupTemp("Calibration en cours...", 10000);
+  }
+
+  onClickEnableMoves(){
+    this.bluetooth.writeCmd(this.cmd.CMD_SRV_ENABLE);
+    this.isMoving = true;
+    this.gen.toastTemp("Moves Enabled", 1000);
+  }
+
+  onClickDisableMoves(){
+    this.bluetooth.writeCmd(this.cmd.CMD_SRV_DISABLE);
+    this.isMoving = false;
+    this.gen.toastTemp("Moves Disabled", 1000);
   }
 
 
@@ -176,9 +195,11 @@ export class SensorPage implements OnInit, OnDestroy {
         switch(command)
         {
           case me.cmd.CMD_SENS_GET_VALUE : 
-          me.addNewData(data[1]);
+            if (me.isPlaying){
+              me.addNewData(data[1]);
+            }
           break;
-          
+
           default:break;
         }
       }

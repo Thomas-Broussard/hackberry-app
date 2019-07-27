@@ -19,6 +19,7 @@ export class MotorsPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.bluetooth.writeCmd(this.cmd.CMD_SRV_DISABLE);
     this.thumb.current = (this.thumb.min + this.thumb.max) / 2;
     this.index.current = (this.index.min + this.index.max) / 2;
     this.fingers.current = (this.fingers.min + this.fingers.max) / 2;
