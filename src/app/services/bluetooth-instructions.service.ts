@@ -20,31 +20,25 @@ export class BluetoothInstructions {
 	//COMMAND LIST SRV
 	//-----------------------------------
 	public CMD_SRV_MOVE:number = 8; 	// move motor to the given position.
-	public CMD_SRV_MOVE_UP:number = 9; 	// rotation of servomotors clockwise.
-	public CMD_SRV_MOVE_DOWN:number = 10; 	// rotation of servomotors reverse clockwise.
-	public CMD_SRV_SAVE_MAX:number = 11; 	// save current position as max limit.
-	public CMD_SRV_SAVE_MIN:number = 12; 	// save current position as min limit.
-	public CMD_SRV_LOAD_MAX:number = 13; 	// load max limit value.
-	public CMD_SRV_LOAD_MIN:number = 14; 	// load min limit value.
-	public CMD_SRV_SET_HAND:number = 15; 	// set type of hand.
-	public CMD_SRV_GET_HAND:number = 16; 	// get current type of hand.
-	public CMD_SRV_CALIB:number = 17; 	// launch servomotor calibration.
-	public CMD_SRV_CALIB_UP:number = 18; 	// move up the servomotor (calibration only).
-	public CMD_SRV_CALIB_DOWN:number = 19; 	// move down the servomotor (calibration only).
-	public CMD_SRV_CALIB_OK:number = 20; 	// validate the position of servomotor (calibration only).
-	public CMD_SRV_SET_SPEED:number = 21; 	// Set the motors speed.
-	public CMD_SRV_GET_SPEED:number = 22; 	// Get the motors speed.
-	public CMD_SRV_TEST:number = 23; 	// Launch the test procedure for motors.
-	public CMD_SRV_ENABLE:number = 24; 	// enable move drived by sensor.
-	public CMD_SRV_DISABLE:number = 25; 	// disable move drived by sensor.
+	public CMD_SRV_SAVE_MAX:number = 9; 	// save current position as max limit.
+	public CMD_SRV_SAVE_MIN:number = 10; 	// save current position as min limit.
+	public CMD_SRV_LOAD_MAX:number = 11; 	// load max limit value.
+	public CMD_SRV_LOAD_MIN:number = 12; 	// load min limit value.
+	public CMD_SRV_SET_HAND:number = 13; 	// set type of hand.
+	public CMD_SRV_GET_HAND:number = 14; 	// get current type of hand.
+	public CMD_SRV_SET_SPEED:number = 15; 	// Set the motors speed.
+	public CMD_SRV_GET_SPEED:number = 16; 	// Get the motors speed.
+	public CMD_SRV_TEST:number = 17; 	// Launch the test procedure for motors.
+	public CMD_SRV_ENABLE:number = 18; 	// enable move drived by sensor.
+	public CMD_SRV_DISABLE:number = 19; 	// disable move drived by sensor.
 
 	//-----------------------------------
 	//COMMAND LIST SENS
 	//-----------------------------------
-	public CMD_SENS_GET_VALUE:number = 26; 	// get current sensor value.
-	public CMD_SENS_SET_TYPE:number = 27; 	// set type of sensor used (IR,EMG,etc…).
-	public CMD_SENS_GET_TYPE:number = 28; 	// get type of sensor used (IR,EMG,etc…).
-	public CMD_SENS_CALIB:number = 29; 	// launch sensor calibration.
+	public CMD_SENS_GET_VALUE:number = 20; 	// get current sensor value.
+	public CMD_SENS_SET_TYPE:number = 21; 	// set type of sensor used (IR,EMG,etc…).
+	public CMD_SENS_GET_TYPE:number = 22; 	// get type of sensor used (IR,EMG,etc…).
+	public CMD_SENS_CALIB:number = 23; 	// launch sensor calibration.
 
 	constructor() { }
 }
