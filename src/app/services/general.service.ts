@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ToastController, AlertController, NavController } from '@ionic/angular';
+import { ToastController, AlertController, NavController, LoadingController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,8 @@ export class GeneralService {
   constructor(
     private toastController: ToastController,
     private alertController: AlertController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    public loadingController: LoadingController
   ) { }
 
   // Display a notification on the bottom of the screen
@@ -57,6 +58,17 @@ export class GeneralService {
     });
 
     await alert.present();
+  }
+ 
+  async popupTemp(payload: string, delay_ms: number)
+  {
+    const loading = await this.loadingController.create({
+      spinner: 'crescent',
+      duration: delay_ms,
+      message: payload,
+      translucent: true,
+    });
+    return await loading.present();
   }
 
   async closeApp()
