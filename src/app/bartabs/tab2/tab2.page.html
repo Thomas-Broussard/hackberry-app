@@ -17,21 +17,30 @@
         </ion-card-content>
       </ion-card>
       <ion-list lines="none">
+
         <ion-item routerLink="/my-hand-infos" routerDirection="forward" detail="true">
           <ion-icon  slot="start" color="tertiary" name="grid"  ></ion-icon>
           <ion-label>{{ 'general-info' | translate }}</ion-label>
         </ion-item>
-  
+        <br/>
         <ion-item routerLink="/my-hand-motors" routerDirection="forward" detail="true">
           <ion-icon slot="start" color="primary"  name="cog" ></ion-icon>
           <ion-label>{{ 'servomotors' | translate }}</ion-label>
         </ion-item>
+
+        <ion-item routerLink="/my-hand-motors-calib" routerDirection="forward" detail="true">
+          <ion-icon slot="start" color="primary"  name="speedometer" ></ion-icon>
+          <ion-label>Etalonnage Moteurs</ion-label>
+        </ion-item>
+        <br/>
         <ion-item routerLink="/my-hand-sensor" routerDirection="forward" detail="true">
-          <ion-icon slot="start" color="success"  name="analytics" ></ion-icon>
+          <ion-icon slot="start" color="success"  name="stats" ></ion-icon>
           <ion-label>{{ 'muscle-sensor' | translate }}</ion-label>
         </ion-item>
-        
-        
-  
+
+        <ion-item routerLink="/my-hand-sensor-calib" routerDirection="forward" detail="true">
+          <ion-icon slot="start" color="success"  name="pulse" ></ion-icon>
+          <ion-label>Etalonnage Capteur</ion-label>
+        </ion-item>
       </ion-list>
   </ion-content>
