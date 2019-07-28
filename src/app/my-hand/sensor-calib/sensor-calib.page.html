@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+              <ion-back-button></ion-back-button>
+        </ion-buttons>
+          <ion-title>Sensor Calibration</ion-title>
+        </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <p>Wear the sensor on the arm that drives the prosthesis.</p>
+    <p>Then, click on <ion-badge color="primary">Calibrate</ion-badge> to begin the procedure.</p>
+    <p>Once started, generate a muscular activity on the sensor for 10 seconds<br/>(opening and closing hand gesture).</p>
+    <p>After 10 seconds, the sensor will be calibrated and the hand will resume normal operation.</p>
+    <ion-img src="/assets/img/learning/sensor-calib-moves.png" ></ion-img>
+</ion-content>
+
+
+<ion-footer no-shadow>
+    <ion-toolbar position="bottom">
+        <ion-button expand="block" color="primary" (click)="onClickCalib()">Calibrate</ion-button>
+    </ion-toolbar>
+  </ion-footer>
