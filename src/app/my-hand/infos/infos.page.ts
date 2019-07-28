@@ -56,12 +56,12 @@ export class InfosPage implements OnInit, OnDestroy {
           break;
 
           case me.cmd.CMD_SRV_GET_HAND : 
-          if (data[1] == 1){
-            me.device.setHand("Right");
-          }
-          else{
-            me.device.setHand("Left");
-          }
+            if (data[1] == 1){
+              me.device.setHand("Right");
+            }
+            else{
+              me.device.setHand("Left");
+            }
           break;
 
           case me.cmd.CMD_GEN_BOARD : 

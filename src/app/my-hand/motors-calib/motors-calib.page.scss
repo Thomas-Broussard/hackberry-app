@@ -1,0 +1,43 @@
+.swiper-slide {
+    display: block;
+  }
+
+ion-slide {
+    height: 100vh;
+}
+
+ion-img {
+    max-width: 50vw;
+    max-height: 50vh;
+    overflow: hidden;
+    margin: auto;
+    display: block;
+}
+
+ion-row{
+    margin: auto;
+    display: block;
+}
+
+ion-chip {
+    background: white;
+}
+
+ion-icon {
+    font-size: 40px; //Preferred size here
+}
+
+.step-one {
+    background: var(--ion-color-primary);
+    color: var(--ion-color-primary-contrast);
+}
+
+.step-two {
+    background: var(--ion-color-success);
+    color: var(--ion-color-success-contrast);
+}
+
+.step-three {
+    background: var(--ion-color-dark);
+    color: var(--ion-color-dark-contrast);
+}
