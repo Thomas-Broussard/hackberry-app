@@ -31,6 +31,7 @@ export class SensorPage implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.bluetooth.clearCmd();
     this.bluetooth.writeCmd(this.cmd.CMD_SRV_DISABLE);
     this.dataSensor = [];
     this.buildChart();
@@ -164,12 +165,12 @@ export class SensorPage implements OnInit, OnDestroy {
   onClickClear(){
     this.clearData();
   }
-
+  /*
   onClickCalib(){
     this.onClickPause();
     this.bluetooth.writeCmd(this.cmd.CMD_SENS_CALIB);
     this.gen.popupTemp("Calibration en cours...", 10000);
-  }
+  }*/
 
   onClickEnableMoves(){
     this.bluetooth.writeCmd(this.cmd.CMD_SRV_ENABLE);
@@ -182,8 +183,6 @@ export class SensorPage implements OnInit, OnDestroy {
     this.isMoving = false;
     this.gen.toastTemp("Moves Disabled", 1000);
   }
-
-
 
   bluetoothReceive()
   {
