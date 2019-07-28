@@ -316,4 +316,12 @@ export class BluetoothService {
       this.bluetoothSerial.write(this.bufferTX[0].data);
     }
   }
+
+  /**
+   * clear the command list
+   */
+  public clearCmd()
+  {
+    this.bufferTX = [];
+  }
 }
