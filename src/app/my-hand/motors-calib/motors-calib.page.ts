@@ -42,6 +42,7 @@ export class MotorsCalibPage implements OnInit
   fingers: any = {id : this.gen.FINGERS , open:0, close:0};
 
   ngOnInit() {
+    this.slides.lockSwipes(true);
     this.receiveBluetooth();
     this.bluetooth.writeCmd(this.cmd.CMD_SRV_DISABLE);
     this.bluetooth.writeCmd(this.cmd.CMD_SRV_GET_POS,this.thumb.id);
@@ -52,14 +53,18 @@ export class MotorsCalibPage implements OnInit
     this.currentStep -=1;
     console.log("current Step = " + this.currentStep);
     this.executeStep();
+    this.slides.lockSwipes(false);
     this.slides.slidePrev();
+    this.slides.lockSwipes(true);
   }
 
   nextStep(){
     this.currentStep +=1;
     console.log("current Step = " + this.currentStep);
     this.executeStep();
+    this.slides.lockSwipes(false);
     this.slides.slideNext();
+    this.slides.lockSwipes(true);
   }
   
   executeStep(){
@@ -102,6 +107,7 @@ export class MotorsCalibPage implements OnInit
           case me.cmd.CMD_SRV_GET_POS : 
             var member = +data[1];
             var position = +data[2];
+            console.log ("member = " + member + " ; pos = " + position);
 
             switch(me.currentStep)
             {
@@ -191,15 +197,12 @@ export class MotorsCalibPage implements OnInit
       switch(member){
         case this.gen.THUMB:
           this.thumb.open = this.increment(this.thumb.open,degree);
-          this.bluetooth.writeCmd(this.cmd.CMD_SRV_FORCE_MOVE, this.thumb.id + ";" + this.thumb.open);
         break;
         case this.gen.INDEX:
           this.index.open = this.increment(this.index.open,degree);
-          this.bluetooth.writeCmd(this.cmd.CMD_SRV_FORCE_MOVE, this.index.id + ";" + this.index.open);
         break;
         case this.gen.FINGERS:
           this.fingers.open = this.increment(this.fingers.open,degree);
-          this.bluetooth.writeCmd(this.cmd.CMD_SRV_FORCE_MOVE, this.fingers.id + ";" + this.fingers.open);
         break;
       }
     }
@@ -208,15 +211,12 @@ export class MotorsCalibPage implements OnInit
       switch(member){
         case this.gen.THUMB:
           this.thumb.close = this.increment(this.thumb.close,degree);
-          this.bluetooth.writeCmd(this.cmd.CMD_SRV_FORCE_MOVE, this.thumb.id + ";" + this.thumb.close);
         break;
         case this.gen.INDEX:
           this.index.close = this.increment(this.index.close,degree);
-          this.bluetooth.writeCmd(this.cmd.CMD_SRV_FORCE_MOVE, this.index.id + ";" + this.index.close);
         break;
         case this.gen.FINGERS:
           this.fingers.close = this.increment(this.fingers.close,degree);
-          this.bluetooth.writeCmd(this.cmd.CMD_SRV_FORCE_MOVE, this.fingers.id + ";" + this.fingers.close);
         break;
       }
     }
@@ -230,15 +230,12 @@ export class MotorsCalibPage implements OnInit
       switch(member){
         case this.gen.THUMB:
           this.thumb.open = this.decrement(this.thumb.open,degree);
-          this.bluetooth.writeCmd(this.cmd.CMD_SRV_FORCE_MOVE, this.thumb.id + ";" + this.thumb.open);
         break;
         case this.gen.INDEX:
           this.index.open = this.decrement(this.index.open,degree);
-          this.bluetooth.writeCmd(this.cmd.CMD_SRV_FORCE_MOVE, this.index.id + ";" + this.index.open);
         break;
         case this.gen.FINGERS:
           this.fingers.open = this.decrement(this.fingers.open,degree);
-          this.bluetooth.writeCmd(this.cmd.CMD_SRV_FORCE_MOVE, this.fingers.id + ";" + this.fingers.open);
         break;
       }
     }
@@ -247,15 +244,12 @@ export class MotorsCalibPage implements OnInit
       switch(member){
         case this.gen.THUMB:
           this.thumb.close = this.decrement(this.thumb.close,degree);
-          this.bluetooth.writeCmd(this.cmd.CMD_SRV_FORCE_MOVE, this.thumb.id + ";" + this.thumb.close);
         break;
         case this.gen.INDEX:
           this.index.close = this.decrement(this.index.close,degree);
-          this.bluetooth.writeCmd(this.cmd.CMD_SRV_FORCE_MOVE, this.index.id + ";" + this.index.close);
         break;
         case this.gen.FINGERS:
           this.fingers.close = this.decrement(this.fingers.close,degree);
-          this.bluetooth.writeCmd(this.cmd.CMD_SRV_FORCE_MOVE, this.fingers.id + ";" + this.fingers.close);
         break;
       }
     }
@@ -264,6 +258,8 @@ export class MotorsCalibPage implements OnInit
   moveRange(member, open: Boolean, event)
   {
     var degree = event.detail.value;
+    if (degree > 0 && degree < 180)
+    {
     if (open)
     {
       switch(member){
@@ -297,6 +293,7 @@ export class MotorsCalibPage implements OnInit
           this.bluetooth.writeCmd(this.cmd.CMD_SRV_FORCE_MOVE, this.fingers.id + ";" + this.fingers.close);
         break;
       }
+    }
     }
     
   }
