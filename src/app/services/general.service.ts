@@ -94,6 +94,7 @@ export class GeneralService {
     await alert.present();
   }
 
+  /** go to previous page */
   async finish()
   {
     this.navCtrl.pop();
