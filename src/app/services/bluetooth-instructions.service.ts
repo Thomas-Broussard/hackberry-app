@@ -45,6 +45,7 @@ export class BluetoothInstructions {
 	//COMMAND LIST SRV
 	//-----------------------------------
 	public CMD_SRV_GET_POS:number = 24; 	// get the current position of a servomotor
+	public CMD_SRV_FORCE_MOVE:number = 25; 	// forced move motor to the given position.
 
 	constructor() { }
 }
