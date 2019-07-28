@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 export class BluetoothInstructions {
 
 	public CMD_ERROR: number = -1; // error received
+	
 	//-----------------------------------
 	//COMMAND LIST GEN
 	//-----------------------------------
@@ -39,6 +40,11 @@ export class BluetoothInstructions {
 	public CMD_SENS_SET_TYPE:number = 21; 	// set type of sensor used (IR,EMG,etc…).
 	public CMD_SENS_GET_TYPE:number = 22; 	// get type of sensor used (IR,EMG,etc…).
 	public CMD_SENS_CALIB:number = 23; 	// launch sensor calibration.
+
+	//-----------------------------------
+	//COMMAND LIST SRV
+	//-----------------------------------
+	public CMD_SRV_GET_POS:number = 24; 	// get the current position of a servomotor
 
 	constructor() { }
 }

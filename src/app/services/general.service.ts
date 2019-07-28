@@ -8,6 +8,10 @@ export class GeneralService {
 
   public APP_VERSION: String = "1.0.0";
 
+  public THUMB : number = 1;
+  public INDEX : number = 2;
+  public FINGERS : number = 3;
+
   constructor(
     private toastController: ToastController,
     private alertController: AlertController,
