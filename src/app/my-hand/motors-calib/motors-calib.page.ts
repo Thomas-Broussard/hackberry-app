@@ -37,9 +37,9 @@ export class MotorsCalibPage implements OnInit
   // variables
   currentStep: Steps = 0;
   countACK: number = 0;
-  thumb: any = {id : this.gen.THUMB , open:0, close:0};
-  index: any = {id : this.gen.INDEX , open:0, close:0};
-  fingers: any = {id : this.gen.FINGERS , open:0, close:0};
+  thumb: any = {id : this.gen.THUMB , open:0, close:0, skipClose:false, skipOpen:false};
+  index: any = {id : this.gen.INDEX , open:0, close:0, skipClose:false, skipOpen:false};
+  fingers: any = {id : this.gen.FINGERS , open:0, close:0, skipClose:false, skipOpen:false};
 
   ngOnInit() {
     this.slides.lockSwipes(true);
@@ -93,6 +93,60 @@ export class MotorsCalibPage implements OnInit
           this.finishCalib();
       break;
     }
+  }
+
+  next(){
+    switch(this.currentStep)
+    {
+      case Steps.THUMB_OPEN:
+        this.thumb.skipOpen = false;
+      break;
+      case Steps.THUMB_CLOSE:
+          this.thumb.skipClose = false;
+      break;
+
+      case Steps.INDEX_OPEN:
+          this.index.skipOpen = false;
+      break;
+      case Steps.INDEX_CLOSE:
+          this.index.skipClose = false;
+      break;
+
+      case Steps.FINGERS_OPEN:
+          this.fingers.skipOpen = false;
+      break;
+      case Steps.FINGERS_CLOSE:
+          this.fingers.skipClose = false;
+      break;
+    }
+    this.nextStep();
+  }
+
+  skip(){
+    switch(this.currentStep)
+    {
+      case Steps.THUMB_OPEN:
+        this.thumb.skipOpen = true;
+      break;
+      case Steps.THUMB_CLOSE:
+          this.thumb.skipClose = true;
+      break;
+
+      case Steps.INDEX_OPEN:
+          this.index.skipOpen = true;
+      break;
+      case Steps.INDEX_CLOSE:
+          this.index.skipClose = true;
+      break;
+
+      case Steps.FINGERS_OPEN:
+          this.fingers.skipOpen = true;
+      break;
+      case Steps.FINGERS_CLOSE:
+          this.fingers.skipClose = true;
+      break;
+    }
+    this.nextStep();
   }
 
   receiveBluetooth()
@@ -169,11 +223,16 @@ export class MotorsCalibPage implements OnInit
     var min = (member.open < member.close) ? member.open : member.close; 
     var max = (member.open > member.close) ? member.open : member.close;
 
-    var paramMin: String = member.id + ';' + min;
-    this.bluetooth.writeCmd(this.cmd.CMD_SRV_SAVE_MIN,paramMin);
-
-    var paramMax: String = member.id + ';' + max;
-    this.bluetooth.writeCmd(this.cmd.CMD_SRV_SAVE_MAX,paramMax);
+    if ((min == member.open && member.skipOpen == false) || (min == member.close && member.skipClose == false))
+    {
+      var paramMin: String = member.id + ';' + min;
+      this.bluetooth.writeCmd(this.cmd.CMD_SRV_SAVE_MIN,paramMin);
+    }
+    if ((max == member.open && member.skipOpen == false) || (max == member.close && member.skipClose == false))
+    {
+      var paramMax: String = member.id + ';' + max;
+      this.bluetooth.writeCmd(this.cmd.CMD_SRV_SAVE_MAX,paramMax);
+    }
   }
 
   increment(value, increment){

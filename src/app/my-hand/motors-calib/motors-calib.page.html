@@ -28,9 +28,10 @@
                 <ion-icon name="add-circle"(click)="incrementRange(gen.THUMB, true)" slot="end"></ion-icon>
             </ion-range>     
 
-            <ion-button color="tertiary" (click)="nextStep()">Set Open Position</ion-button>
+            <ion-button color="tertiary" (click)="next()">Set Open Position</ion-button>
             <br/>
             <ion-button color="danger" (click)="cancelCalib()">Cancel</ion-button>
+            <ion-button color="medium" (click)="skip()">Skip</ion-button>
         </ion-slide>
 
       <!--
@@ -51,9 +52,10 @@
                 <ion-icon name="add-circle"(click)="incrementRange(gen.THUMB, false)" slot="end"></ion-icon>
             </ion-range>     
 
-            <ion-button color="tertiary" (click)="nextStep()">Set Close Position</ion-button>
+            <ion-button color="tertiary" (click)="next()">Set Close Position</ion-button>
             <br/>
             <ion-button color="danger" (click)="prevStep()">Back</ion-button>
+            <ion-button color="medium" (click)="skip()">Skip</ion-button>
         </ion-slide>
 
 
@@ -75,9 +77,10 @@
               <ion-icon name="add-circle"(click)="incrementRange(gen.INDEX, true)" slot="end"></ion-icon>
           </ion-range>     
 
-          <ion-button color="tertiary" (click)="nextStep()">Set Open Position</ion-button>
+          <ion-button color="tertiary" (click)="next()">Set Open Position</ion-button>
           <br/>
           <ion-button color="danger" (click)="prevStep()">Back</ion-button>
+          <ion-button color="medium" (click)="skip()">Skip</ion-button>
       </ion-slide>
 
     <!--
@@ -98,9 +101,10 @@
               <ion-icon name="add-circle"(click)="incrementRange(gen.INDEX, false)" slot="end"></ion-icon>
           </ion-range>     
 
-          <ion-button color="tertiary" (click)="nextStep()">Set Close Position</ion-button>
+          <ion-button color="tertiary" (click)="next()">Set Close Position</ion-button>
           <br/>
           <ion-button color="danger" (click)="prevStep()">Back</ion-button>
+          <ion-button color="medium" (click)="skip()">Skip</ion-button>
       </ion-slide>
 
       <!--
@@ -121,9 +125,10 @@
               <ion-icon name="add-circle"(click)="incrementRange(gen.FINGERS, true)" slot="end"></ion-icon>
           </ion-range>     
 
-          <ion-button color="tertiary" (click)="nextStep()">Set Open Position</ion-button>
+          <ion-button color="tertiary" (click)="next()">Set Open Position</ion-button>
           <br/>
           <ion-button color="danger" (click)="prevStep()">Back</ion-button>
+          <ion-button color="medium" (click)="skip()">Skip</ion-button>
       </ion-slide>
 
     <!--
@@ -144,9 +149,10 @@
               <ion-icon name="add-circle"(click)="incrementRange(gen.FINGERS, false)" slot="end"></ion-icon>
           </ion-range>     
 
-          <ion-button color="tertiary" (click)="nextStep()">Set Close Position</ion-button>
+          <ion-button color="tertiary" (click)="next()">Set Close Position</ion-button>
           <br/>
           <ion-button color="danger" (click)="prevStep()">Back</ion-button>
+          <ion-button color="medium" (click)="skip()">Skip</ion-button>
       </ion-slide>
 
 
