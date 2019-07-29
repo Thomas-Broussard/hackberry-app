@@ -12,6 +12,9 @@ export class GeneralService {
   public INDEX : number = 2;
   public FINGERS : number = 3;
 
+  private _toast;
+  private _popup;
+
   constructor(
     private toastController: ToastController,
     private alertController: AlertController,
@@ -21,7 +24,7 @@ export class GeneralService {
 
   // Display a notification on the bottom of the screen
   async toastOK(payload: string){
-    const toast = await this.toastController.create(
+    this._toast = await this.toastController.create(
       {
       message: payload,
       buttons: [
@@ -35,23 +38,23 @@ export class GeneralService {
       ]
       }
     );
-    toast.present();
+    this._toast.present();
   }
 
   async toastTemp(payload: string, duration_ms: number){
-    const toast = await this.toastController.create(
+    this._toast = await this.toastController.create(
       {
       message: payload,
       duration: duration_ms,
       }
     );
-    toast.present();
+    this._toast.present();
   }
 
 
   async popup(payload: string)
   {
-    const alert = await this.alertController.create({
+    this._popup = await this.alertController.create({
       header: payload,
       buttons: [
         {
@@ -61,18 +64,18 @@ export class GeneralService {
       ]
     });
 
-    await alert.present();
+    await this._popup.present();
   }
  
   async popupTemp(payload: string, delay_ms: number)
   {
-    const loading = await this.loadingController.create({
+    this._popup = await this.loadingController.create({
       spinner: 'crescent',
       duration: delay_ms,
       message: payload,
       translucent: true,
     });
-    return await loading.present();
+    return await this._popup.present();
   }
 
   async closeApp()
@@ -100,4 +103,11 @@ export class GeneralService {
     this.navCtrl.pop();
   }
 
+  async dismiss()
+  {
+    this.alertController.dismiss();
+    this.loadingController.dismiss();
+  }
+
+  
 }
