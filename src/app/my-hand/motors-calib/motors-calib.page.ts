@@ -1,7 +1,7 @@
 import { GeneralService } from './../../services/general.service';
 import { BluetoothInstructions } from './../../services/bluetooth-instructions.service';
 import { BluetoothService } from './../../services/bluetooth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';  
 
@@ -32,11 +32,13 @@ export class MotorsCalibPage implements OnInit
     public bluetooth : BluetoothService,
     public cmd: BluetoothInstructions,
     public gen : GeneralService,
+    private changeref: ChangeDetectorRef
   ) { }
 
   // variables
   currentStep: Steps = 0;
   countACK: number = 0;
+  targetACK: number = 0;
   thumb: any = {id : this.gen.THUMB , open:0, close:0, skipClose:false, skipOpen:false};
   index: any = {id : this.gen.INDEX , open:0, close:0, skipClose:false, skipOpen:false};
   fingers: any = {id : this.gen.FINGERS , open:0, close:0, skipClose:false, skipOpen:false};
@@ -120,6 +122,7 @@ export class MotorsCalibPage implements OnInit
       break;
     }
     this.nextStep();
+    this.targetACK +=1;
   }
 
   skip(){
@@ -186,13 +189,14 @@ export class MotorsCalibPage implements OnInit
                   me.fingers.close = position;
               break;
             }
+            me.changeref.detectChanges();
           break;
 
           case me.cmd.CMD_SRV_SAVE_MIN : 
           case me.cmd.CMD_SRV_SAVE_MAX :
             me.countACK += 1;
 
-            if (me.countACK == 6){
+            if (me.countACK == me.targetACK){
               me.gen.toastTemp("Calibration finished !",1000);
               me.gen.finish();
             }
@@ -205,11 +209,18 @@ export class MotorsCalibPage implements OnInit
   finishCalib()
   {
     this.countACK = 0;
-    this.savePositions(this.thumb);
-    this.savePositions(this.index);
-    this.savePositions(this.fingers);
-    //this.gen.toastTemp("Motors Calibration finished !",1500);
-    //this.gen.finish();
+    if (this.targetACK > 0){
+      this.savePositions(this.thumb);
+      this.savePositions(this.index);
+      this.savePositions(this.fingers);
+    }
+    else
+    {
+      this.gen.toastTemp("Motors Calibration finished !",1500);
+      this.gen.finish();
+    }
+    
+    
   }
   
   cancelCalib()
