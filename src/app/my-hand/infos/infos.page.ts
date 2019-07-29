@@ -1,7 +1,7 @@
 import { HackberryDevice } from './../../services/hackberryDevice/hackberry-device.service';
 import { BluetoothInstructions } from './../../services/bluetooth-instructions.service';
 import { BluetoothService } from './../../services/bluetooth.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-infos',
@@ -14,7 +14,8 @@ export class InfosPage implements OnInit, OnDestroy {
   constructor(
     public bluetooth : BluetoothService,
     public device: HackberryDevice,
-    public cmd : BluetoothInstructions
+    public cmd : BluetoothInstructions,
+    private changeRef: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -70,6 +71,7 @@ export class InfosPage implements OnInit, OnDestroy {
           
           default:break;
         }
+        me.changeRef.detectChanges();
       }
     );
   }

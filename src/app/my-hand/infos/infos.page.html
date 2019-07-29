@@ -20,7 +20,9 @@
 
         <ion-item detail="false">
             <ion-label>Battery</ion-label>
-            <ion-label class="right-align"> {{ device.getBattery() }} %</ion-label>
+
+            <ion-label *ngIf="device.getBattery() >= 0" class="right-align"> {{ device.getBattery() }} %</ion-label>
+            <ion-label *ngIf="device.getBattery() < 0" class="right-align"> Not monitored</ion-label>
           </ion-item>
   
 
@@ -39,6 +41,6 @@
         <ion-label class="right-align">{{ device.getHand() }}</ion-label>
       </ion-item>
 
-    <ion-button expand="block" color="primary" (click)="askInfos()"> refresh</ion-button>
+    <!--<ion-button expand="block" color="primary" (click)="askInfos()"> refresh</ion-button>-->
 
     </ion-content>
