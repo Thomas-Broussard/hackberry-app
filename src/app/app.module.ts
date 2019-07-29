@@ -35,7 +35,6 @@ import { GeneralService } from './services/general.service';
 
 import { UserGuidePage } from './learning/user-guide/user-guide.page';
 import { ButtonsUsagePage } from './learning/buttons-usage/buttons-usage.page';
-import { AssemblyGuidePage } from './learning/assembly-guide/assembly-guide.page';
 import { UserGuidePageModule } from './learning/user-guide/user-guide.module';
 import { ButtonsUsagePageModule } from './learning/buttons-usage/buttons-usage.module';
 
@@ -68,7 +67,6 @@ import { PdfService } from './services/pdf/pdf.service';
     SensorPageModule,
 
     // Learning
-    AssemblyGuidePageModule,
     ButtonsUsagePageModule,
     UserGuidePageModule,
 
@@ -99,7 +97,6 @@ import { PdfService } from './services/pdf/pdf.service';
     SensorPage,
     
     // Learning
-    AssemblyGuidePage,
     ButtonsUsagePage,
     UserGuidePage,
 
