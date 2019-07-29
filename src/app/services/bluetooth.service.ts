@@ -85,10 +85,7 @@ export class BluetoothService {
    * @return (Observable) true if connected ; false otherwise 
    */
   public connect(device : any): Observable<boolean>
-  {
-
-      this.gen.toastTemp("Connecting to " + device.name + "...", 2000);
-      
+  { 
       return this.bluetoothSerial.connect(device.id).pipe(
         map((data) => {
         if(this.bluetoothSerial.isConnected())

@@ -18,6 +18,7 @@ export class BluetoothConnectPage implements OnInit {
 
   isScanning: boolean = false;
   noDeviceFound: boolean = false;
+  timeConnect_ms : number = 5000;
 
   constructor(
     public bluetooth : BluetoothService,
@@ -29,19 +30,31 @@ export class BluetoothConnectPage implements OnInit {
     this.bluetooth.scan();
   }
 
-  connect(device: any){
+  connect(device: any)
+  {
+    let me = this;
+    this.gen.popupTemp("Connecting to " + device.name + "...", this.timeConnect_ms);
     this.bluetooth.connect(device).subscribe(
       (isConnected: boolean)=>
       {
         if (isConnected){
+          this.gen.dismiss();
           console.log("Successfully Connected ! ");
           this.gen.toastTemp("Successfully Connected ! ", 2000);
           this.gen.finish();
         } else {
-          console.log("Connection Failure...");
-          this.gen.toastOK("Error during connection. Please retry");
+          //console.log("Connection Failure...");
+          //this.gen.toastOK("Error during connection. Please retry");
         }
       }
     )
+    
+    // display message if bluetooth is not connected after timeConnect_ms duration
+    setTimeout( () => {
+      if (!me.bluetooth.isConnected())
+      {
+        me.gen.toastTemp("Connection Failure... Please retry later",2000);
+      }
+    }, this.timeConnect_ms);
   }
 }
