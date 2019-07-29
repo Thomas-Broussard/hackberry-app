@@ -3,7 +3,7 @@
 
 # 1 - générer la release build
 echo "==========================="
-echo "Step 1 - Debug Build"
+echo "       Debug Build"
 echo "==========================="
 cd ..
 ionic cordova build android
@@ -11,7 +11,7 @@ ionic cordova build android
 
 # 3 - Utiliser zipalign pour optimiser l'APK
 echo "==========================="
-echo "Step 3 - Generate Output"
+echo "     Generate Output"
 echo "==========================="
 #./tools/zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release.apk outputs/HackberryApp.apk
 mv platforms/android/app/build/outputs/apk/debug/app-debug.apk outputs/HackberryAppDebug.apk
