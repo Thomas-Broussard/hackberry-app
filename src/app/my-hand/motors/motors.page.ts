@@ -20,7 +20,7 @@ export class MotorsPage implements OnInit {
     public bluetooth : BluetoothService,
     public cmd: BluetoothInstructions,
     public gen: GeneralService,
-    public changeref: ChangeDetectorRef
+    private changeref: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
