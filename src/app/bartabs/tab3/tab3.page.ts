@@ -1,3 +1,4 @@
+import { PdfService } from './../../services/pdf/pdf.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,6 +8,6 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(private pdf : PdfService) {}
 
 }

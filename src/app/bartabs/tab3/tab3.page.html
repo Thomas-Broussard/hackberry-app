@@ -20,7 +20,7 @@
       <!-- ##################################################### -->
       <!-- ASSEMBLY GUIDE -->
       <!-- ##################################################### -->
-      <ion-item routerLink="/learning-assembly-guide" routerDirection="forward"  detail="true">
+      <ion-item (click)="pdf.openLocalPdf('assembly-guide')" routerDirection="forward"  detail="true"> <!--routerLink="/learning-assembly-guide"-->
         <ion-icon slot="start" color="primary" name="build"></ion-icon>
         <ion-label>{{ 'assembly-guide' | translate }}</ion-label>
       </ion-item>

@@ -19,6 +19,11 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 
+import { File } from '@ionic-native/File/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
+
 // Material
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -33,7 +38,6 @@ import { ButtonsUsagePage } from './learning/buttons-usage/buttons-usage.page';
 import { AssemblyGuidePage } from './learning/assembly-guide/assembly-guide.page';
 import { UserGuidePageModule } from './learning/user-guide/user-guide.module';
 import { ButtonsUsagePageModule } from './learning/buttons-usage/buttons-usage.module';
-import { AssemblyGuidePageModule } from './learning/assembly-guide/assembly-guide.module';
 
 import { BluetoothConnectPageModule } from './bluetooth-connect/bluetooth-connect.module';
 import { BluetoothConnectPage } from './bluetooth-connect/bluetooth-connect.page';
@@ -44,6 +48,7 @@ import { SensorPageModule } from './my-hand/sensor/sensor.module';
 import { MotorsPageModule } from './my-hand/motors/motors.module';
 import { InfosPage } from './my-hand/infos/infos.page';
 import { InfosPageModule } from './my-hand/infos/infos.module';
+import { PdfService } from './services/pdf/pdf.service';
 
 
 @NgModule({
@@ -107,11 +112,16 @@ import { InfosPageModule } from './my-hand/infos/infos.module';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     BluetoothSerial,
+    File,
+    FileOpener,
+    FileTransfer,
+    DocumentViewer,
 
     // local services
     BluetoothService,
     BluetoothInstructions,
-    GeneralService
+    GeneralService,
+    PdfService,
   ]
 
 })
