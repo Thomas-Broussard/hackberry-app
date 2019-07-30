@@ -1,26 +1,37 @@
-import { PdfService } from './../../services/pdf/pdf.service';
-import { Component } from '@angular/core';
+import { GeneralService } from './../../services/general.service';
+import { HackberryDocService } from './../../services/pdf/hackberry-doc.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss']
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit{
 
-  constructor(private pdf : PdfService) {}
+  constructor(
+    private doc : HackberryDocService,
+    private gen : GeneralService) {}
 
-  downloadRequired : boolean = false
-
-  // list all documents here
-  assemblyGuide : PDFDocument = { name :"assembly-guide", url:"https://github.com/Thomas-Broussard/hackberry-app/raw/master/src/assets/pdf/assembly-guide.pdf"};
-
+  downloadRequired : boolean = false;
+  countryCode : string = "fr";
+  
+  ngOnInit()
+  {
+  }
   /**
    * open the doc if present in memory or download it if not
    */
-  openDoc(doc)
+  openDoc(name)
   {
-    this.pdf.openOrDownload(doc.name,doc.url); 
+    let me = this;
+    this.gen.getLanguage().then(
+      result => {
+        me.countryCode = result;
+        this.doc.openOrDownload(name, me.countryCode); 
+      }
+    );
+    
   }
 }
 
