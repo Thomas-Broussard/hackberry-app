@@ -2,6 +2,7 @@ import { BluetoothService } from './../../services/bluetooth.service';
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Platform, AlertController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
   selector: 'app-tabs',
@@ -14,6 +15,7 @@ export class TabsPage implements OnInit, OnDestroy, AfterViewInit{
               private alertController : AlertController,
               public bluetooth : BluetoothService,
               public navCtrl: NavController,
+              private gen : GeneralService,
               private router : Router) {}
 
   subscription : any ;
@@ -22,6 +24,7 @@ export class TabsPage implements OnInit, OnDestroy, AfterViewInit{
 
   ngOnInit() 
   { 
+    this.gen.getLanguage().then();
     this.bluetooth.isConnected();
   }
   
