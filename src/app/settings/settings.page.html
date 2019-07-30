@@ -3,7 +3,7 @@
       <ion-buttons slot="start">
           <ion-back-button></ion-back-button>
         </ion-buttons>
-    <ion-title>Settings</ion-title>
+    <ion-title>{{ 'settings' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,11 +15,11 @@
     <!-- ##################################################### -->
     <ion-item routerDirection="forward"  detail="false">
       <ion-icon slot="start" color="tertiary" name="flag"></ion-icon>
-      <ion-label>Language</ion-label>
+      <ion-label>{{ 'language' | translate }}</ion-label>
       <ion-select placeholder="Select" (ionChange)="onLanguageChange($event)">
-        <ion-select-option value="fr" [selected]="isCountrySelected('fr')">French</ion-select-option>
-        <ion-select-option value="en" [selected]="isCountrySelected('en')">English</ion-select-option>
-        <ion-select-option value="jp" [selected]="isCountrySelected('jp')">Japanese</ion-select-option>
+        <ion-select-option value="fr" [selected]="isCountrySelected('fr')">{{ 'french' | translate }}</ion-select-option>
+        <ion-select-option value="en" [selected]="isCountrySelected('en')">{{ 'english' | translate }}</ion-select-option>
+        <ion-select-option value="jp" [selected]="isCountrySelected('jp')">{{ 'japanese' | translate }}</ion-select-option>
       </ion-select>
     </ion-item>
 
