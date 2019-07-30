@@ -3,7 +3,7 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
           </ion-buttons>
-      <ion-title>Motors Calibration</ion-title>
+      <ion-title>{{ 'motors-calibration' | translate }}</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -17,8 +17,8 @@
       -->
         <ion-slide class="step-one">
             <ion-img src="assets/img/my-hand/icon_thumb.png"></ion-img>
-            <h1>Thumb</h1>
-            <p>Move the cursor to select the Open position</p>
+            <h1>{{ 'thumb' | translate }}</h1>
+            <p>{{ 'move-open' | translate }}</p>
             <br/>
 
             <p>{{thumb.open}}°</p>
@@ -28,10 +28,10 @@
                 <ion-icon name="add-circle"(click)="incrementRange(gen.THUMB, true)" slot="end"></ion-icon>
             </ion-range>     
 
-            <ion-button color="tertiary" (click)="next()">Set Open Position</ion-button>
+            <ion-button color="tertiary" (click)="next()">{{ 'set-open-pos' | translate }}</ion-button>
             <br/>
-            <ion-button color="danger" (click)="cancelCalib()">Cancel</ion-button>
-            <ion-button color="medium" (click)="skip()">Skip</ion-button>
+            <ion-button color="danger" (click)="prevStep()">{{ 'back' | translate }}</ion-button>
+            <ion-button color="medium" (click)="skip()">{{ 'skip' | translate }}</ion-button>
         </ion-slide>
 
       <!--
@@ -41,8 +41,8 @@
       -->
         <ion-slide class="step-one">
             <ion-img src="assets/img/my-hand/icon_thumb.png"></ion-img>
-            <h1>Thumb</h1>
-            <p>Move the cursor to select the Close position</p>
+            <h1>{{ 'thumb' | translate }}</h1>
+            <p>{{ 'move-close' | translate }}</p>
             <br/>
 
             <p>{{thumb.close}}°</p>
@@ -52,10 +52,10 @@
                 <ion-icon name="add-circle"(click)="incrementRange(gen.THUMB, false)" slot="end"></ion-icon>
             </ion-range>     
 
-            <ion-button color="tertiary" (click)="next()">Set Close Position</ion-button>
+            <ion-button color="tertiary" (click)="next()">{{ 'set-close-pos' | translate }}</ion-button>
             <br/>
-            <ion-button color="danger" (click)="prevStep()">Back</ion-button>
-            <ion-button color="medium" (click)="skip()">Skip</ion-button>
+            <ion-button color="danger" (click)="prevStep()">{{ 'back' | translate }}</ion-button>
+            <ion-button color="medium" (click)="skip()">{{ 'skip' | translate }}</ion-button>
         </ion-slide>
 
 
@@ -66,8 +66,8 @@
       -->
       <ion-slide class="step-two">
           <ion-img src="assets/img/my-hand/icon_index.png"></ion-img>
-          <h1>Index</h1>
-          <p>Move the cursor to select the Open position</p>
+          <h1>{{ 'index' | translate }}</h1>
+            <p>{{ 'move-open' | translate }}</p>
           <br/>
 
           <p>{{index.open}}°</p>
@@ -77,10 +77,10 @@
               <ion-icon name="add-circle"(click)="incrementRange(gen.INDEX, true)" slot="end"></ion-icon>
           </ion-range>     
 
-          <ion-button color="tertiary" (click)="next()">Set Open Position</ion-button>
+          <ion-button color="tertiary" (click)="next()">{{ 'set-open-pos' | translate }}</ion-button>
           <br/>
-          <ion-button color="danger" (click)="prevStep()">Back</ion-button>
-          <ion-button color="medium" (click)="skip()">Skip</ion-button>
+          <ion-button color="danger" (click)="prevStep()">{{ 'back' | translate }}</ion-button>
+          <ion-button color="medium" (click)="skip()">{{ 'skip' | translate }}</ion-button>
       </ion-slide>
 
     <!--
@@ -90,8 +90,8 @@
     -->
       <ion-slide class="step-two">
           <ion-img src="assets/img/my-hand/icon_index.png"></ion-img>
-          <h1>Index</h1>
-          <p>Move the cursor to select the Close position</p>
+          <h1>{{ 'index' | translate }}</h1>
+            <p>{{ 'move-close' | translate }}</p>
           <br/>
 
           <p>{{index.close}}°</p>
@@ -101,10 +101,10 @@
               <ion-icon name="add-circle"(click)="incrementRange(gen.INDEX, false)" slot="end"></ion-icon>
           </ion-range>     
 
-          <ion-button color="tertiary" (click)="next()">Set Close Position</ion-button>
+          <ion-button color="tertiary" (click)="next()">{{ 'set-close-pos' | translate }}</ion-button>
           <br/>
-          <ion-button color="danger" (click)="prevStep()">Back</ion-button>
-          <ion-button color="medium" (click)="skip()">Skip</ion-button>
+          <ion-button color="danger" (click)="prevStep()">{{ 'back' | translate }}</ion-button>
+          <ion-button color="medium" (click)="skip()">{{ 'skip' | translate }}</ion-button>
       </ion-slide>
 
       <!--
@@ -114,8 +114,8 @@
       -->
       <ion-slide class="step-three">
           <ion-img src="assets/img/my-hand/icon_fingers.png"></ion-img>
-          <h1>Fingers</h1>
-          <p>Move the cursor to select the Open position</p>
+          <h1>{{ 'fingers' | translate }}</h1>
+            <p>{{ 'move-open' | translate }}</p>
           <br/>
 
           <p>{{fingers.open}}°</p>
@@ -125,10 +125,10 @@
               <ion-icon name="add-circle"(click)="incrementRange(gen.FINGERS, true)" slot="end"></ion-icon>
           </ion-range>     
 
-          <ion-button color="tertiary" (click)="next()">Set Open Position</ion-button>
+          <ion-button color="tertiary" (click)="next()">{{ 'set-open-pos' | translate }}</ion-button>
           <br/>
-          <ion-button color="danger" (click)="prevStep()">Back</ion-button>
-          <ion-button color="medium" (click)="skip()">Skip</ion-button>
+          <ion-button color="danger" (click)="prevStep()">{{ 'back' | translate }}</ion-button>
+          <ion-button color="medium" (click)="skip()">{{ 'skip' | translate }}</ion-button>
       </ion-slide>
 
     <!--
@@ -138,8 +138,8 @@
     -->
       <ion-slide class="step-three">
           <ion-img src="assets/img/my-hand/icon_fingers.png"></ion-img>
-          <h1>Fingers</h1>
-          <p>Move the cursor to select the Close position</p>
+          <h1>{{ 'fingers' | translate }}</h1>
+            <p>{{ 'move-close' | translate }}</p>
           <br/>
 
           <p>{{fingers.close}}°</p>
@@ -149,10 +149,10 @@
               <ion-icon name="add-circle"(click)="incrementRange(gen.FINGERS, false)" slot="end"></ion-icon>
           </ion-range>     
 
-          <ion-button color="tertiary" (click)="next()">Set Close Position</ion-button>
+          <ion-button color="tertiary" (click)="next()">{{ 'set-close-pos' | translate }}</ion-button>
           <br/>
-          <ion-button color="danger" (click)="prevStep()">Back</ion-button>
-          <ion-button color="medium" (click)="skip()">Skip</ion-button>
+          <ion-button color="danger" (click)="prevStep()">{{ 'back' | translate }}</ion-button>
+          <ion-button color="medium" (click)="skip()">{{ 'skip' | translate }}</ion-button>
       </ion-slide>
 
 
