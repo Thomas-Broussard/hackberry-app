@@ -13,7 +13,7 @@
         </ion-card-header>
         <ion-card-content>
             
-          <p>Now that your hand has been connected, you can drive her easily with the differents controllers below.</p>
+          <p>{{ 'my-hand-description' | translate }}</p>
         </ion-card-content>
       </ion-card>
       <ion-list lines="none">
@@ -25,12 +25,12 @@
         <br/>
         <ion-item routerLink="/my-hand-motors" routerDirection="forward" detail="true">
           <ion-icon slot="start" color="primary"  name="cog" ></ion-icon>
-          <ion-label>{{ 'servomotors' | translate }}</ion-label>
+          <ion-label>{{ 'motors' | translate }}</ion-label>
         </ion-item>
 
         <ion-item routerLink="/my-hand-motors-calib" routerDirection="forward" detail="true">
           <ion-icon slot="start" color="primary"  name="speedometer" ></ion-icon>
-          <ion-label>Etalonnage Moteurs</ion-label>
+          <ion-label>{{ 'motors-calibration' | translate }}</ion-label>
         </ion-item>
         <br/>
         <ion-item routerLink="/my-hand-sensor" routerDirection="forward" detail="true">
@@ -40,7 +40,7 @@
 
         <ion-item routerLink="/my-hand-sensor-calib" routerDirection="forward" detail="true">
           <ion-icon slot="start" color="success"  name="pulse" ></ion-icon>
-          <ion-label>Etalonnage Capteur</ion-label>
+          <ion-label>{{ 'sensor-calibration' | translate }}</ion-label>
         </ion-item>
       </ion-list>
   </ion-content>

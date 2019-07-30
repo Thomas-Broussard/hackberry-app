@@ -4,12 +4,14 @@
     "learning":"Learning",
     "about":"About",
 
+    
     "assembly-guide":"Assembly Guide",
     "user-guide":"User Guide",
     "setup-hand":"Setup Your Hand",
     "buttons-usage":"Buttons Usage",
     "sensor-calib":"Sensor Calibration",
-    "motors-calib":"Motors Calibration",
+    "motors-calib":"Motors Calibration"  ,
+
 
     "connect":"Connect",
     "not-connected": "Not connected",
@@ -17,9 +19,14 @@
     "disconnect": "Disconnect",
     "exit-app":"Exit App",
 
-    "servomotors":"Servomotors",
-    "muscle-sensor":"Muscle Sensor",
+
+    "my-hand-description":"Now that your hand has been connected, you can drive her easily with the differents controllers below.",
     "general-info":"General Info",
+    "motors":"Motors",
+    "motors-calibration":"Motors Calibration",
+    "muscle-sensor":"Muscle Sensor",
+    "sensor-calibration":"Sensor Calibration",
+    
 
     "bluetooth-pairing":"Bluetooth Pairing",
     "connect-your-hand":"Connect your Hackberry Hand",

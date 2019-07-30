@@ -4,6 +4,7 @@
     "learning":"Documents",
     "about":"A propos",
 
+
     "assembly-guide":"Guide d'assemblage",
     "user-guide":"Manuel Utilisateur",
     "buttons-usage":"Les Boutons",
@@ -11,16 +12,22 @@
     "sensor-calib":"Etalonnage du Capteur",
     "motors-calib":"Etalonnage des Moteurs",
 
+
     "connect":"Connexion",
+    "disconnect":"Déconnexion",
     "not-connected": "Déconnecté",
     "connected": "Connecté",
-    "disconnect":"Déconnexion",
     "exit-app":"Quitter",
 
-    "servomotors":"Servomoteurs",
-    "muscle-sensor":"Capteur musculaire",
-    "general-info":"Infos Générales",
 
+    "my-hand-description":"Maintenant que la main est connecté, vous pouvez la piloter grâce aux modules ci-dessous",
+    "general-info":"Infos Générales",
+    "motors":"Moteurs",
+    "motors-calibration":"Etalonnage Moteurs",
+    "muscle-sensor":"Capteur musculaire",
+    "sensor-calibration":"Etalonnage Capteur",
+
+    
     "bluetooth-pairing":"Appairage Bluetooth",
     "connect-your-hand":"Connectez votre Main Hackberry",
 
@@ -39,5 +46,11 @@
     "about-enable-1":"e-Nable France est une association loi de 1901, reconnue d’intérêt général, constituée fin 2015.",
     "about-enable-2":"Sa mission est de mettre en relation des personnes ayant besoin d’un appareil avec les personnes susceptibles de les fabriquer.",
     "about-enable-3":"Nos makers utilisent l’impression 3D pour fabriquer et offrir des mains à des personnes qui n’ont pas de doigts.",
-    "photo-credits":"Crédits Photos"
+    "photo-credits":"Crédits Photos",
+
+
+    "french":"Français",
+    "english":"Anglais",
+    "japanese":"Japonais",
+    
 }
