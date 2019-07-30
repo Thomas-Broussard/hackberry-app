@@ -15,6 +15,8 @@ const routes: Routes = [
   { path: 'my-hand-motors', loadChildren: './my-hand/motors/motors.module#MotorsPageModule' },
   { path: 'my-hand-motors-calib', loadChildren: './my-hand/motors-calib/motors-calib.module#MotorsCalibPageModule' },
   { path: 'my-hand-sensor-calib', loadChildren: './my-hand/sensor-calib/sensor-calib.module#SensorCalibPageModule' },
+  { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
+
 
 
 ];
