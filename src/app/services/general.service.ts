@@ -1,5 +1,7 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Injectable } from '@angular/core';
 import { ToastController, AlertController, NavController, LoadingController } from '@ionic/angular';
+import { File } from '@ionic-native/File/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,9 @@ export class GeneralService {
     private toastController: ToastController,
     private alertController: AlertController,
     private navCtrl: NavController,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    private file: File,
+    private translate : TranslateService,
   ) { }
 
   // Display a notification on the bottom of the screen
@@ -109,5 +113,41 @@ export class GeneralService {
     this.loadingController.dismiss();
   }
 
+
+  
+
+  setLanguage(countryCode : string)
+  {
+    let me = this;
+    let filePath = this.file.dataDirectory;
+    this.file.createFile(filePath,'language',true).then(
+      result => {
+        me.file.writeExistingFile(filePath,'language',countryCode);
+        me.translate.use(countryCode);
+      })
+  }
+
+  getLanguage()
+  {
+    let filePath = this.file.dataDirectory;
+    let me = this;
+
+    return this.file.readAsText(filePath, 'language').then(
+      language => 
+      {
+        console.log("language : " + language);
+        me.translate.use(language);
+        return language;
+      })
+      .catch(
+        err =>
+        {
+          let default_language = this.translate.getDefaultLang();
+          console.log("language file not found");
+          me.setLanguage(default_language);
+          return default_language;
+        }
+      );
+  }
   
 }
