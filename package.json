@@ -114,8 +114,8 @@
       "cordova-plugin-document-viewer": {}
     },
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
