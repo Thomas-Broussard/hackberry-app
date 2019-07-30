@@ -59,8 +59,59 @@ export class PdfService {
      * @param name name of the file
      * @param url url to download the file
      */
-    download(name:string,url: string)
+    download(name:string,url: string, enablePopup: boolean = false)
     {
+      let me = this;
+      if (enablePopup) this.gen.popupTemp("Downloading " + name + "...", 600000);
+      const fileTransfer: FileTransferObject = this.ft.create();
+
+      this.file.checkDir(me.docPath, me.docDir)
+		  .then(
+			// Directory exists, download the file and open it
+        _ => 
+        fileTransfer.download(url,me.docFullPath + name + '.pdf')
+        .then(
+          (entry) => 
+            {
+              console.log('file download response',entry);
+              if (enablePopup)  me.gen.dismiss();
+            }
+        )
+        .catch(
+          (err) =>{
+            console.log('error in file download',err);
+            if (enablePopup) me.gen.dismiss();
+            if (enablePopup) me.gen.toastTemp("Error : can't download File", 2000);
+          }
+        )
+      )
+      .catch(
+        // Directory does not exists, create a new one, then download and open the file
+        err => 		
+          me.file.createDir(me.docPath, me.docDir, false)
+          .then(
+            response => {
+              console.log('Directory created',response);
+              fileTransfer.download(url,me.docFullPath + name + '.pdf').then((entry) => 
+              {
+                  console.log('file download response',entry);
+                  if (enablePopup) me.gen.dismiss();
+              })
+              .catch((err) =>{
+                  console.log('error in file download',err);
+                  if (enablePopup) me.gen.dismiss();
+                  if (enablePopup) me.gen.toastTemp("Error : can't download File", 2000);
+              });
+            }
+          )
+          .catch(
+            err => {
+              console.log('Could not create directory "my_downloads" ',err);
+              if (enablePopup) me.gen.dismiss();
+              if (enablePopup) me.gen.toastTemp("Error : please give authorization to access files", 2000);
+            }
+          ) 
+      );
     }
 
     /**
@@ -167,6 +218,5 @@ export class PdfService {
           me.openFromURL(name,url);
         }
         );
-
     }
 }
