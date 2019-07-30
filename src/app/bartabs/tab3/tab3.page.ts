@@ -14,11 +14,19 @@ export class Tab3Page implements OnInit{
     private gen : GeneralService) {}
 
   downloadRequired : boolean = false;
-  countryCode : string = "fr";
+  countryCode : string = "en";
+  docList: any = [];
   
-  ngOnInit()
-  {
+  ngOnInit(){
+
   }
+
+  ionViewWillEnter()
+  {
+    console.log("ionWillEnter");
+    this.refreshDocs();
+  }
+  
   /**
    * open the doc if present in memory or download it if not
    */
@@ -31,11 +39,32 @@ export class Tab3Page implements OnInit{
         this.doc.openOrDownload(name, me.countryCode); 
       }
     );
-    
   }
-}
 
-class PDFDocument{
-  public url: string;
-  public name: string;
+  downloadAllDocs()
+  {
+    let me = this;
+    this.gen.getLanguage().then(
+      result => {
+        me.countryCode = result;
+        this.doc.downloadAll(me.countryCode); 
+      }
+    );
+  }
+
+  refreshDocs()
+  {
+    let me = this;
+    this.gen.getLanguage().then(
+      result => {
+        me.countryCode = result;
+        me.doc.getFilesFromList()
+        .then(
+          result => {
+            me.docList = result;
+          }
+        );
+      }
+    );
+  }
 }

@@ -17,46 +17,15 @@
     </ion-card>
     <ion-list lines="none">
 
-      <!-- ##################################################### -->
-      <!-- ASSEMBLY GUIDE -->
-      <!-- ##################################################### -->
-      <ion-item (click)="openDoc('assembly-guide')" routerDirection="forward"  detail="true">
-        <ion-icon slot="start" color="primary" name="build"></ion-icon>
-        <ion-label>{{ 'assembly-guide' | translate }}</ion-label>
+      <ion-item *ngFor="let doc of docList" (click)="openDoc(doc.filename)"  detail="true">
+          <ion-icon slot="start" [color]="doc.color" [name]="doc.icon"></ion-icon>
+
+          <ion-label *ngIf="countryCode == 'en'">{{ doc.title_en }}</ion-label>
+          <ion-label *ngIf="countryCode == 'fr'">{{ doc.title_fr }}</ion-label>
+          <ion-label *ngIf="countryCode == 'jp'">{{ doc.title_jp }}</ion-label>
       </ion-item>
 
-      <!-- ##################################################### -->
-      <!-- SETUP GUIDE -->
-      <!-- ##################################################### -->
-      <ion-item routerLink="/learning-setup-hand"  detail="true">
-          <ion-icon slot="start" color="primary" name="hammer"></ion-icon>
-          <ion-label>{{ 'setup-hand' | translate }}</ion-label>
-        </ion-item>     
-
-      <!-- ##################################################### -->
-      <!-- BUTTONS USAGE -->
-      <!-- ##################################################### -->
-      <ion-item routerLink="/learning-buttons-usage" routerDirection="forward"  detail="true">
-        <ion-icon slot="start" color="success" name="switch"></ion-icon>
-        <ion-label>{{ 'buttons-usage' | translate }}</ion-label>
-      </ion-item>
-
-      <!-- ##################################################### -->
-      <!-- SENSOR CALIBRATION -->
-      <!-- ##################################################### -->
-      <ion-item routerLink="/learning-sensor-calib" routerDirection="forward" detail="true">
-        <ion-icon slot="start" color="tertiary" name="pulse"></ion-icon>
-        <ion-label>{{ 'sensor-calibration' | translate }}</ion-label>
-      </ion-item>
-
-      <!-- ##################################################### -->
-      <!-- MOTORS CALIBRATION -->
-      <!-- ##################################################### -->
-      <ion-item routerLink="/learning-motors-calib" routerDirection="forward" detail="true">
-        <ion-icon slot="start" color="tertiary" name="speedometer"></ion-icon>
-        <ion-label>{{ 'motors-calibration' | translate }}</ion-label>
-      </ion-item>
-
+      <!--<ion-button expand="block" color="primary" (click)="refreshDocs()"><ion-icon name="refresh"></ion-icon> Refresh</ion-button>-->
 
     </ion-list>
   </ion-content>

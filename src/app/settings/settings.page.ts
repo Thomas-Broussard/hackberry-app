@@ -1,3 +1,4 @@
+import { HackberryDocService } from './../services/pdf/hackberry-doc.service';
 import { GeneralService } from './../services/general.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
@@ -10,7 +11,8 @@ export class SettingsPage implements OnInit {
 
   constructor(
     private gen : GeneralService,
-    private changeref: ChangeDetectorRef
+    private changeref: ChangeDetectorRef,
+    private doc : HackberryDocService,
     ) { }
 
   countryCode : string;
@@ -36,6 +38,18 @@ export class SettingsPage implements OnInit {
     var language = event.detail.value;
     this.countryCode = language;
     this.gen.setLanguage(language);
+  }
+
+
+  downloadAllDocs()
+  {
+    let me = this;
+    this.gen.toastTemp("Update in progress...", 2000);
+    this.gen.getLanguage().then(
+      result => {
+        this.doc.downloadAll(result); 
+      }
+    );
   }
 
 }

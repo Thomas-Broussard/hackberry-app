@@ -13,7 +13,7 @@
     <!-- ##################################################### -->
     <!-- LANGUAGE -->
     <!-- ##################################################### -->
-    <ion-item routerDirection="forward"  detail="false">
+    <ion-item detail="false">
       <ion-icon slot="start" color="tertiary" name="flag"></ion-icon>
       <ion-label>{{ 'language' | translate }}</ion-label>
       <ion-select placeholder="Select" (ionChange)="onLanguageChange($event)">
@@ -22,6 +22,10 @@
         <ion-select-option value="jp" [selected]="isCountrySelected('jp')">{{ 'japanese' | translate }}</ion-select-option>
       </ion-select>
     </ion-item>
+    <br/>
+
+    <ion-button expand="block" color="primary" (click)="downloadAllDocs()">{{ 'update-docs' | translate }}</ion-button>
+    
 
   </ion-list>
 </ion-content>
