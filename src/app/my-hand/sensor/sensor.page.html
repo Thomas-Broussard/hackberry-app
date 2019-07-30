@@ -4,7 +4,7 @@
         <ion-back-button></ion-back-button>
   </ion-buttons>
 
-    <ion-title>Sensor</ion-title>
+    <ion-title>{{ 'muscle-sensor' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -21,9 +21,8 @@
 
       <ion-button expand="block" color="danger" (click)="onClickClear()">Clear</ion-button>
       <br/>
-      <ion-button expand="block" *ngIf="!isMoving" color="warning" (click)="onClickEnableMoves()">Moves Disabled</ion-button>
-      <ion-button expand="block" *ngIf="isMoving" color="success" (click)="onClickDisableMoves()">Moves Enabled</ion-button>
+      <ion-button expand="block" *ngIf="!isMoving" color="warning" (click)="onClickEnableMoves()">{{ 'moves-disabled' | translate }}</ion-button>
+      <ion-button expand="block" *ngIf="isMoving" color="success" (click)="onClickDisableMoves()">{{ 'moves-enabled' | translate }}</ion-button>
 
-		  <!--<ion-button expand="block" color="primary" (click)="onClickCalib()">Calibrate</ion-button>-->
 	</ion-toolbar>
 </ion-footer>
