@@ -3,21 +3,21 @@
         <ion-buttons slot="start">
               <ion-back-button></ion-back-button>
         </ion-buttons>
-          <ion-title>Sensor Calibration</ion-title>
+          <ion-title>{{ 'muscle-sensor' | translate }}</ion-title>
         </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <p>Wear the sensor on the arm that drives the prosthesis.</p>
-    <p>Then, click on <ion-badge color="primary">Calibrate</ion-badge> to begin the procedure.</p>
-    <p>Once started, generate a muscular activity on the sensor for 10 seconds<br/>(opening and closing hand gesture).</p>
-    <p>After 10 seconds, the sensor will be calibrated and the hand will resume normal operation.</p>
+    <p>{{ 'sensor-calib-1' | translate }}</p>
+    <p>{{ 'sensor-calib-2' | translate }} <ion-badge color="primary">{{ 'calibrate' | translate }}</ion-badge> {{ 'sensor-calib-3' | translate }}</p>
+    <p>{{ 'sensor-calib-4' | translate }}</p>
+    <p>{{ 'sensor-calib-5' | translate }}</p>
     <ion-img src="/assets/img/learning/sensor-calib-moves.png" ></ion-img>
 </ion-content>
 
 
 <ion-footer no-shadow>
     <ion-toolbar position="bottom">
-        <ion-button expand="block" color="primary" (click)="onClickCalib()">Calibrate</ion-button>
+        <ion-button expand="block" color="primary" (click)="onClickCalib()">{{ 'calibrate' | translate }}</ion-button>
     </ion-toolbar>
   </ion-footer>
