@@ -1,3 +1,4 @@
+import { HackberryDocService } from './services/pdf/hackberry-doc.service';
 import { BluetoothInstructions } from './services/bluetooth-instructions.service';
 
 // plugins
@@ -48,6 +49,8 @@ import { MotorsPageModule } from './my-hand/motors/motors.module';
 import { InfosPage } from './my-hand/infos/infos.page';
 import { InfosPageModule } from './my-hand/infos/infos.module';
 import { PdfService } from './services/pdf/pdf.service';
+import { SettingsPageModule } from './settings/settings.module';
+import { SettingsPage } from './settings/settings.page';
 
 
 @NgModule({
@@ -72,6 +75,7 @@ import { PdfService } from './services/pdf/pdf.service';
 
     // Home
     BluetoothConnectPageModule,
+    SettingsPageModule,
 
     // ngx-translate and the loader module
     HttpClientModule,
@@ -102,6 +106,7 @@ import { PdfService } from './services/pdf/pdf.service';
 
     // Home
     BluetoothConnectPage,
+    SettingsPage,
   ],
 
   providers: [
@@ -119,6 +124,7 @@ import { PdfService } from './services/pdf/pdf.service';
     BluetoothInstructions,
     GeneralService,
     PdfService,
+    HackberryDocService,
   ]
 
 })
