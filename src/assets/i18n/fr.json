@@ -5,14 +5,6 @@
     "about":"A propos",
 
 
-    "assembly-guide":"Guide d'assemblage",
-    "user-guide":"Manuel Utilisateur",
-    "buttons-usage":"Les Boutons",
-    "setup-hand":"Mise en route",
-    "sensor-calib":"Etalonnage du Capteur",
-    "motors-calib":"Etalonnage des Moteurs",
-
-
     "connect":"Connexion",
     "disconnect":"Déconnexion",
     "not-connected": "Déconnecté",
@@ -23,11 +15,17 @@
     "my-hand-description":"Maintenant que la main est connecté, vous pouvez la piloter grâce aux modules ci-dessous",
     "general-info":"Infos Générales",
     "motors":"Moteurs",
-    "motors-calibration":"Etalonnage Moteurs",
+    "motors-calibration":"Etalonnage des Moteurs",
     "muscle-sensor":"Capteur musculaire",
-    "sensor-calibration":"Etalonnage Capteur",
+    "sensor-calibration":"Etalonnage du Capteur",
 
     
+    "assembly-guide":"Guide d'assemblage",
+    "user-guide":"Manuel Utilisateur",
+    "buttons-usage":"Les Boutons",
+    "setup-hand":"Mise en route",
+
+
     "bluetooth-pairing":"Appairage Bluetooth",
     "connect-your-hand":"Connectez votre Main Hackberry",
 

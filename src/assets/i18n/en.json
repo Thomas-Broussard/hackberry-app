@@ -5,14 +5,6 @@
     "about":"About",
 
     
-    "assembly-guide":"Assembly Guide",
-    "user-guide":"User Guide",
-    "setup-hand":"Setup Your Hand",
-    "buttons-usage":"Buttons Usage",
-    "sensor-calib":"Sensor Calibration",
-    "motors-calib":"Motors Calibration"  ,
-
-
     "connect":"Connect",
     "not-connected": "Not connected",
     "connected": "Connected",
@@ -26,6 +18,12 @@
     "motors-calibration":"Motors Calibration",
     "muscle-sensor":"Muscle Sensor",
     "sensor-calibration":"Sensor Calibration",
+
+    
+    "assembly-guide":"Assembly Guide",
+    "user-guide":"User Guide",
+    "setup-hand":"Setup Your Hand",
+    "buttons-usage":"Buttons Usage",
     
 
     "bluetooth-pairing":"Bluetooth Pairing",
