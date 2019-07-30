@@ -1,4 +1,4 @@
-<ion-header>
+  <ion-header>
     <ion-toolbar>
       
       <ion-title>
@@ -45,6 +45,12 @@
             <h3> {{ 'connected' | translate }} - {{ bluetooth.currentDevice.getName() }}</h3>
             <p>{{ bluetooth.currentDevice.getId() }}</p>
         </ion-label>
+        </ion-item>
+
+        <!-- App settings -->
+        <ion-item routerLink="/settings" routerDirection="forward" detail="true">
+          <ion-icon slot="start" color="medium" name="settings"></ion-icon>
+          <ion-label>Settings</ion-label>
         </ion-item>
     </ion-list>
   </ion-content>
