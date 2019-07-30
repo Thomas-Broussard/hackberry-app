@@ -10,7 +10,7 @@
 <ion-content>
         <ion-list text-center >
             <ion-img class="centered" style="width: 50px; height: 50px;" src="assets/img/my-hand/icon_thumb.png"></ion-img>
-            <ion-label color="success">Thumb</ion-label>
+            <ion-label color="success">{{'thumb' | translate }}</ion-label>
         <ion-range (ionChange)="moveThumb($event)"  debounce="500" min="{{ thumb.min }}" max="{{ thumb.max }}" value="{{thumb.current}}" pin color="success">
           <ion-label color="success" slot="start">{{ thumb.min }}°</ion-label>
           <ion-label color="success" slot="end">{{ thumb.max }}°</ion-label>
@@ -20,7 +20,7 @@
 
       <ion-list text-center >
           <ion-img class="centered" style="width: 50px; height: 50px;" src="assets/img/my-hand/icon_index.png"></ion-img>
-          <ion-label color="primary">Index</ion-label>
+          <ion-label color="primary">{{'index' | translate }}</ion-label>
       <ion-range (ionChange)="moveIndex($event)"  debounce="500"  min="{{ index.min }}" max="{{ index.max }}" value="{{index.current}}" pin color="primary">
         <ion-label color="primary" slot="start">{{ index.min }}°</ion-label>
         <ion-label color="primary" slot="end">{{ index.max }}°</ion-label>
@@ -29,7 +29,7 @@
 
     <ion-list text-center >
         <ion-img class="centered" style="width: 50px; height: 50px;" src="assets/img/my-hand/icon_fingers.png"></ion-img>
-        <ion-label color="danger">Fingers</ion-label>
+        <ion-label color="danger">{{'fingers' | translate }}</ion-label>
     <ion-range (ionChange)="moveFingers($event)"  debounce="500" min="{{ fingers.min }}" max="{{ fingers.max }}"  value="{{fingers.current}}" pin color="danger">
       <ion-label color="danger" slot="start"> {{ fingers.min }}°</ion-label>
       <ion-label color="danger" slot="end">{{ fingers.max }}°</ion-label>
