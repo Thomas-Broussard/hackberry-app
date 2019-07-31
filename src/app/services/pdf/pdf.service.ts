@@ -29,6 +29,7 @@ export class PdfService {
     /**
      * Move a PDF file from assets/ to dataDirectory/pdf/ and open it
      * @param name 
+     * @deprecated
      */
     openFromAssets(name: string) 
     {
@@ -58,14 +59,14 @@ export class PdfService {
      * download a pdf file from an url and save it in dataDirectory/pdf/
      * @param name name of the file
      * @param url url to download the file
+     * @return true if download is successful ; false otherwise
      */
-    download(name:string,url: string, enablePopup: boolean = false)
+    download(name:string,url: string)
     {
       let me = this;
-      if (enablePopup) this.gen.popupTemp("Downloading " + name + "...", 600000);
       const fileTransfer: FileTransferObject = this.ft.create();
 
-      this.file.checkDir(me.docPath, me.docDir)
+      return this.file.checkDir(me.docPath, me.docDir)
 		  .then(
 			// Directory exists, download the file and open it
         _ => 
@@ -74,14 +75,13 @@ export class PdfService {
           (entry) => 
             {
               console.log('file download response',entry);
-              if (enablePopup)  me.gen.dismiss();
+              return true;
             }
         )
         .catch(
           (err) =>{
             console.log('error in file download',err);
-            if (enablePopup) me.gen.dismiss();
-            if (enablePopup) me.gen.toastTemp("Error : can't download File", 2000);
+            return false;
           }
         )
       )
@@ -92,23 +92,13 @@ export class PdfService {
           .then(
             response => {
               console.log('Directory created',response);
-              fileTransfer.download(url,me.docFullPath + name + '.pdf').then((entry) => 
-              {
-                  console.log('file download response',entry);
-                  if (enablePopup) me.gen.dismiss();
-              })
-              .catch((err) =>{
-                  console.log('error in file download',err);
-                  if (enablePopup) me.gen.dismiss();
-                  if (enablePopup) me.gen.toastTemp("Error : can't download File", 2000);
-              });
+              me.download(name,url);
             }
           )
           .catch(
             err => {
               console.log('Could not create directory "my_downloads" ',err);
-              if (enablePopup) me.gen.dismiss();
-              if (enablePopup) me.gen.toastTemp("Error : please give authorization to access files", 2000);
+              return false;
             }
           ) 
       );
@@ -139,6 +129,7 @@ export class PdfService {
      * download a pdf file from an url, save it in dataDirectory/pdf/ and open it
      * @param name name of the file
      * @param url url to download the file
+     * @deprecated
      */
     openFromURL(name:string,url: string)
     {
@@ -173,18 +164,7 @@ export class PdfService {
           me.file.createDir(me.docPath, me.docDir, false)
           .then(
             response => {
-              console.log('Directory created',response);
-              fileTransfer.download(url,me.docFullPath + name + '.pdf').then((entry) => 
-              {
-                  console.log('file download response',entry);
-                  me.open(name);
-                  me.gen.dismiss();
-              })
-              .catch((err) =>{
-                  console.log('error in file download',err);
-                  me.gen.dismiss();
-                  me.gen.toastTemp("Error : can't download File", 2000);
-              });
+              me.openFromURL(name,url);
             }
           )
           .catch(
@@ -201,6 +181,7 @@ export class PdfService {
      * open the file if it exists or download it if not
      * @param name name of the file to open
      * @param url url to download the file 
+     * @deprecated
      */    
     openOrDownload(name:string , url: string)
     {
@@ -219,5 +200,7 @@ export class PdfService {
         }
         );
     }
+
+
     
 }
