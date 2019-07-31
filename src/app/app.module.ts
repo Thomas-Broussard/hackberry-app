@@ -33,12 +33,6 @@ import { BluetoothService } from './services/bluetooth.service';
 import { GeneralService } from './services/general.service';
 
 // Pages
-
-import { UserGuidePage } from './learning/user-guide/user-guide.page';
-import { ButtonsUsagePage } from './learning/buttons-usage/buttons-usage.page';
-import { UserGuidePageModule } from './learning/user-guide/user-guide.module';
-import { ButtonsUsagePageModule } from './learning/buttons-usage/buttons-usage.module';
-
 import { BluetoothConnectPageModule } from './bluetooth-connect/bluetooth-connect.module';
 import { BluetoothConnectPage } from './bluetooth-connect/bluetooth-connect.page';
 
@@ -69,10 +63,6 @@ import { SettingsPage } from './settings/settings.page';
     MotorsPageModule,
     SensorPageModule,
 
-    // Learning
-    ButtonsUsagePageModule,
-    UserGuidePageModule,
-
     // Home
     BluetoothConnectPageModule,
     SettingsPageModule,
@@ -99,10 +89,7 @@ import { SettingsPage } from './settings/settings.page';
     InfosPage,
     MotorsPage,
     SensorPage,
-    
-    // Learning
-    ButtonsUsagePage,
-    UserGuidePage,
+
 
     // Home
     BluetoothConnectPage,
