@@ -43,6 +43,14 @@ export class SensorPage implements OnInit, OnDestroy {
   }
 
   buildChart() {
+    var yLabels = {
+      0  : 'Open(fast)',
+      400 : 'Open(slow)',
+      500 : 'No move',
+      600 : 'Close(slow)',
+      1024 : 'Close(fast)'
+  }
+
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
 
       type: 'line',
@@ -78,10 +86,12 @@ export class SensorPage implements OnInit, OnDestroy {
         scales: {
             yAxes: [{
                 ticks: {
-                    min: 0,
-                    max: this.Ymax,
-                    stepSize: 256,
-                }
+                  callback: function(value, index, values) {
+                      return yLabels[value];
+                  },
+                  min: 0,
+                  max: this.Ymax,
+              }
             }],
             xAxes: [ { gridLines: { display: false } } ] 
         }
