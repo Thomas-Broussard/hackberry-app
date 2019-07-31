@@ -1,3 +1,4 @@
+import { AlertController } from '@ionic/angular';
 import { GeneralService } from './../../services/general.service';
 import { HackberryDocService } from './../../services/pdf/hackberry-doc.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +12,8 @@ export class Tab3Page implements OnInit{
 
   constructor(
     private doc : HackberryDocService,
-    private gen : GeneralService) {}
+    private gen : GeneralService,
+    ) {}
 
   downloadRequired : boolean = false;
   countryCode : string = "en";
@@ -28,7 +30,7 @@ export class Tab3Page implements OnInit{
   }
   
   /**
-   * open the doc if present in memory or download it if not
+   * open the doc if present in memory (do not download them)
    */
   openDoc(name)
   {
@@ -36,22 +38,33 @@ export class Tab3Page implements OnInit{
     this.gen.getLanguage().then(
       result => {
         me.countryCode = result;
-        this.doc.openOrDownload(name, me.countryCode); 
+        this.doc.open(name, me.countryCode); 
       }
     );
   }
 
+  /**
+   * Check if documents need to be updated or not
+   * 
+   * @return true if update needed ; false otherwise
+   */
+  documentNeedUpdate()
+  {
+    return this.docList.length <= 0;
+  }
+
+  /**
+   * Download all the documents needed 
+   */
   downloadAllDocs()
   {
     let me = this;
-    this.gen.getLanguage().then(
-      result => {
-        me.countryCode = result;
-        this.doc.downloadAll(me.countryCode); 
-      }
-    );
+    me.doc.downloadAllPack();
   }
 
+  /**
+   * Refresh the documentation display
+   */
   refreshDocs()
   {
     let me = this;
