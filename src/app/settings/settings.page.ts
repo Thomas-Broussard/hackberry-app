@@ -47,7 +47,7 @@ export class SettingsPage implements OnInit {
     this.gen.toastTemp("Update in progress...", 2000);
     this.gen.getLanguage().then(
       result => {
-        this.doc.downloadAll(result); 
+        this.doc.downloadAllPack(); 
       }
     );
   }
