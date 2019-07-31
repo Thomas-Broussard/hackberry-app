@@ -55,5 +55,21 @@
 "settings":"Réglages",
 "language":"Langage",
 "scan":"Scan",
-"update-docs":"Mettre à jour la documentation"
+"update-docs":"Mettre à jour la documentation",
+"about-hackberry-1":"Hackberry est une prothèse open-source myoélectrique (prothèse contrôlée par des capteurs musculaires placés sur le bras pour le contrôler) développée par Exiii pour les personnes handicapées souhaitant retrouver une autonomie au quotidien: sociale, professionnelle, transport, ...",
+"about-hackberry-2":"Ces prototypes sont encore limités pour un usage quotidien par rapport aux modèles sur le marché, mais ils présentent les caractéristiques suivantes :",
+"about-hackberry-2A":"Le coût total de la prothèse est inférieur à 1000 € (10 000 à 70 000 € sur le marché)",
+"about-hackberry-2B":"Les pièces principales (doigts, paume, prise) sont réalisées avec une imprimante 3D",
+"about-hackberry-2C":"Les plans des pièces plastiques, la liste des matériaux et les tutoriels de fabrication sont en ligne afin que la prothèse puisse être réalisée, mais également de contribuer au développement de la prothèse en partageant ces résultats (open-source)",
+"about-hackberry-3":"Son objectif est de fédérer une équipe autour de la construction d'une prothèse de membre supérieur à faible coût avec des composants source ouverts et standardisés. Ils sont facilement réparables et donc accessibles aux personnes disposant de ressources financières limitées.",
+"about-enable-1":"e-Nable France est une association loi de 1901, reconnue d’intérêt général, constituée fin 2015.",
+"about-enable-2":"Sa mission est de mettre en relation des personnes ayant besoin d’un appareil avec les personnes susceptibles de les fabriquer.",
+"about-enable-3":"Nos makers utilisent l’impression 3D pour fabriquer et offrir des mains à des personnes qui n’ont pas de doigts.",
+"photo-credits":"Crédits Photos",
+"no-docs-found":"Aucun document trouvé !",
+"please-update-docs":"Cliquez sur 'Mettre à jour la documentation' dans la section 'Réglages' de l'onglet 'Accueil'.",
+"author":"Auteur",
+"foreword":"Avant-Propos",
+"foreword-1":"My hackberry App est une application destinée aux fabricants et utilisateurs des mains Hackberry.",
+"foreword-2":"Son développement est réalisé par des bénévoles de l'association e-Nable France."
 }
