@@ -15,6 +15,7 @@ export class Tab3Page implements OnInit{
     private gen : GeneralService,
     ) {}
 
+    isUpdateAvailable : boolean = false;
   downloadRequired : boolean = false;
   countryCode : string = "en";
   docList: any = [];
@@ -27,6 +28,7 @@ export class Tab3Page implements OnInit{
   {
     console.log("ionWillEnter");
     this.refreshDocs();
+    this.checkUpdate();
   }
   
   /**
@@ -50,7 +52,8 @@ export class Tab3Page implements OnInit{
    */
   documentNeedUpdate()
   {
-    return this.docList.length <= 0;
+    if (this.docList != undefined && this.docList != null) return this.docList.length <= 0;
+    else return true;
   }
 
   /**
@@ -59,7 +62,7 @@ export class Tab3Page implements OnInit{
   downloadAllDocs()
   {
     let me = this;
-    me.doc.downloadAllPack();
+    me.doc.downloadLatestDocs();
   }
 
   /**
@@ -71,7 +74,7 @@ export class Tab3Page implements OnInit{
     this.gen.getLanguage().then(
       result => {
         me.countryCode = result;
-        me.doc.getFilesFromList()
+        me.doc.getLocalList()
         .then(
           result => {
             me.docList = result;
@@ -79,5 +82,26 @@ export class Tab3Page implements OnInit{
         );
       }
     );
+  }
+
+  checkUpdate()
+  {
+    let me = this;
+    if (this.gen.isConnectedToInternet())
+    {
+      this.doc.isUpdateAvailable().then(
+        result =>
+        {
+          me.isUpdateAvailable = result;
+        }
+      ).catch(
+        err=>{
+          me.isUpdateAvailable = false;
+        }
+      )
+    }
+    else{
+      me.isUpdateAvailable = false;
+    }
   }
 }
