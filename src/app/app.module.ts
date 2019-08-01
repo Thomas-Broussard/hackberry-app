@@ -45,6 +45,7 @@ import { InfosPageModule } from './my-hand/infos/infos.module';
 import { PdfService } from './services/pdf/pdf.service';
 import { SettingsPageModule } from './settings/settings.module';
 import { SettingsPage } from './settings/settings.page';
+import { Network } from '@ionic-native/network/ngx';
 
 
 @NgModule({
@@ -105,6 +106,7 @@ import { SettingsPage } from './settings/settings.page';
     FileOpener,
     FileTransfer,
     DocumentViewer,
+    Network,
 
     // local services
     BluetoothService,
