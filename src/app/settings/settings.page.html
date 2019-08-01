@@ -24,8 +24,12 @@
     </ion-item>
     <br/>
 
-    <ion-button expand="block" color="primary" (click)="downloadAllDocs()">{{ 'update-docs' | translate }}</ion-button>
-    
+    <ion-button *ngIf="gen.isConnectedToInternet() && isUpdateAvailable" expand="block" color="primary" (click)="downloadAllDocs()">{{ 'update-docs' | translate }}</ion-button>
+    <ion-button *ngIf="!gen.isConnectedToInternet()" expand="block" color="medium">{{ 'no-update-docs' | translate }}</ion-button>
+    <ion-button *ngIf="gen.isConnectedToInternet()  && !isUpdateAvailable" expand="block" color="success">{{ 'update-ok' | translate }}</ion-button>
+    <br/>
 
+    <ion-button  expand="block" color="danger" (click)="deleteAllDocs()">{{ 'delete-docs' | translate }}</ion-button>
   </ion-list>
 </ion-content>
+

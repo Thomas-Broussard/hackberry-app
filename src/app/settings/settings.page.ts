@@ -15,6 +15,7 @@ export class SettingsPage implements OnInit {
     private doc : HackberryDocService,
     ) { }
 
+  isUpdateAvailable : boolean = false;
   countryCode : string;
 
   ngOnInit() {
@@ -26,6 +27,12 @@ export class SettingsPage implements OnInit {
         me.changeref.detectChanges();
       }
     );
+  }
+
+  ionViewWillEnter()
+  {
+    console.log("ionWillEnter");
+    this.checkUpdate();
   }
 
   isCountrySelected(countryCode: string)
@@ -43,13 +50,35 @@ export class SettingsPage implements OnInit {
 
   downloadAllDocs()
   {
+    this.doc.downloadLatestDocs(); 
+  }
+
+  checkUpdate()
+  {
     let me = this;
-    this.gen.toastTemp("Update in progress...", 2000);
-    this.gen.getLanguage().then(
-      result => {
-        this.doc.downloadAllPack(); 
-      }
-    );
+    if (this.gen.isConnectedToInternet())
+    {
+      this.doc.isUpdateAvailable().then(
+        result =>
+        {
+          me.isUpdateAvailable = result;
+          me.changeref.detectChanges();
+        }
+      ).catch(
+        err=>{
+          me.isUpdateAvailable = false;
+        }
+      )
+    }
+    else{
+      me.isUpdateAvailable = false;
+      me.changeref.detectChanges();
+    }
+  }
+
+  deleteAllDocs()
+  {
+    this.doc.eraseAllDocs();
   }
 
 }
