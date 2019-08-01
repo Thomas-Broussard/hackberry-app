@@ -25,83 +25,43 @@ export class PdfService {
     docDir:  string = "HackberryDoc";
     docFullPath: string  = this.docPath + this.docDir + "/";
     
-
-    /**
-     * Move a PDF file from assets/ to dataDirectory/pdf/ and open it
-     * @param name 
-     * @deprecated
-     */
-    openFromAssets(name: string) 
-    {
-      let filePath = this.file.applicationDirectory + 'www/assets';
-      let fileName = 'pdf/' + name + '.pdf';
-
-      if (this.platform.is('android')) 
-      {
-        this.file.copyFile(filePath, fileName, this.docFullPath, `${name}.pdf`).then(
-          result => {
-            this.fileOpener.open(result.nativeURL, 'application/pdf')
-              .then(() => console.log('File is opened'))
-              .catch(e => console.log('Error opening file', e));
-          })
-      } 
-      else 
-      {
-        // Use Document viewer for iOS for a better UI
-        const options: DocumentViewerOptions = {
-          title: 'My PDF'
-        }
-        this.document.viewDocument(`${filePath}/${fileName}`, 'application/pdf', options);
-      }
-    }
-
     /**
      * download a pdf file from an url and save it in dataDirectory/pdf/
      * @param name name of the file
      * @param url url to download the file
      * @return true if download is successful ; false otherwise
      */
-    download(name:string,url: string)
+    download(name:string,url: string) : Promise <boolean>
     {
       let me = this;
       const fileTransfer: FileTransferObject = this.ft.create();
 
-      return this.file.checkDir(me.docPath, me.docDir)
-		  .then(
-			// Directory exists, download the file and open it
+      return this.safeCreateDir(me.docPath, me.docDir)
+      .then(
+        // Directory exists, download the file and open it
         _ => 
-        fileTransfer.download(url,me.docFullPath + name + '.pdf')
-        .then(
-          (entry) => 
-            {
-              console.log('file download response',entry);
-              return true;
-            }
-        )
-        .catch(
-          (err) =>{
-            console.log('error in file download',err);
-            return false;
-          }
-        )
-      )
-      .catch(
-        // Directory does not exists, create a new one, then download and open the file
-        err => 		
-          me.file.createDir(me.docPath, me.docDir, false)
+        {
+          return this.safeCheckFile(me.docFullPath , name + '.pdf')
           .then(
-            response => {
-              console.log('Directory created',response);
-              me.download(name,url);
+            _ =>
+            {
+              return fileTransfer.download(url,me.docFullPath + name + '.pdf')
+              .then(
+                (entry) => 
+                  {
+                    return Promise.resolve(true);
+                  }
+              )
+              .catch(
+                (err) =>{
+                  console.log('error in file download',err);
+                  return Promise.reject(err);
+                }
+              )
             }
           )
-          .catch(
-            err => {
-              console.log('Could not create directory "my_downloads" ',err);
-              return false;
-            }
-          ) 
-      );
+        }
+      )  
     }
 
     /**
@@ -199,6 +159,38 @@ export class PdfService {
           me.openFromURL(name,url);
         }
         );
+    }
+    
+
+    safeCreateDir(path: string, dir : string) : Promise<boolean>
+    {
+      let me = this;
+      return this.file.checkDir(path, dir)
+
+      // Directory already exists, return true as Promise result
+		  .then( _ => { return Promise.resolve(true);} )
+
+      // Directory does not exists, create it
+      .catch(
+        err => 		
+          me.file.createDir(me.docPath, me.docDir, false)
+          .then( _ => { return me.safeCreateDir(path, dir); })
+      );
+    }
+
+    safeCheckFile(path: string, file : string) : Promise<boolean>
+    {
+      let me = this;
+
+      return this.file.checkFile(path, file)
+
+      // File already exists, delete it
+		  .then( _ => { 
+        return me.file.removeFile(me.docPath, file)
+          .then( _ => { return me.safeCheckFile(path, file); })
+      })
+      // File does not exist, return true as Promise result
+      .catch( _ => { return Promise.resolve(true);} );	
     }
 
 
