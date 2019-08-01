@@ -68,12 +68,20 @@ export class PdfService {
      * Open a PDF file from dataDirectory/pdf/
      * @param name 
      */
-    open(name: string) {
+    open(name: string) : Promise<boolean> {
       if (this.platform.is('android')) 
       {
-        this.fileOpener.open(this.docFullPath + `${name}.pdf`, 'application/pdf')
-        .then(() => console.log('File is opened'))
-        .catch(e => console.log('Error opening file', e));
+        return this.fileOpener.open(this.docFullPath + `${name}.pdf`, 'application/pdf')
+        .then(() => {
+          console.log('File is opened');
+          return Promise.resolve(true);
+        })
+        .catch(
+          err =>
+          {
+            console.log('Error opening file', err);
+            return Promise.reject(err);
+          });
       } 
       else 
       {
@@ -82,6 +90,7 @@ export class PdfService {
           title: 'My PDF'
         }
         this.document.viewDocument(this.docFullPath + `${name}.pdf`, 'application/pdf', options);
+        return Promise.resolve(true);
       }
     }
 
