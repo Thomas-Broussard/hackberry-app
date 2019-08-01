@@ -161,25 +161,32 @@ export class HackberryDocService {
           }, {
             text: 'OK',
             handler: () => {
-              me.gen.popupTemp("Updating Documentation...", 600 * 1000);
-              me.launchDownloadLatestDocs()
-              .then(
-                result =>{
-                  if (result == true)
-                  {
-                    console.log("downloadLatestDocs finished");
-                    me.gen.dismiss();
-                    me.gen.toastTemp("Documentations successfully downloaded !",2000);
+
+              if (me.gen.isConnectedToInternet())
+              {
+                me.gen.popupTemp("Updating Documentation...", 600 * 1000);
+                me.launchDownloadLatestDocs()
+                .then(
+                  result =>{
+                    if (result == true)
+                    {
+                      console.log("downloadLatestDocs finished");
+                      me.gen.dismiss();
+                      me.gen.toastTemp("Documentations successfully downloaded !",2000);
+                    }
                   }
-                }
-              )
-              .catch(
-                err=>{ 
-                  console.log("downloadLatestDocs error");
-                    me.gen.dismiss();
-                    me.gen.toastTemp("Error during download. Please retry later.",2000);
-                }
-              )
+                )
+                .catch(
+                  err=>{ 
+                    console.log("downloadLatestDocs error");
+                      me.gen.dismiss();
+                      me.gen.toastTemp("Error during download. Please retry later.",2000);
+                  }
+                )
+              }
+              else{
+                me.gen.toastTemp("Error : you're not connected to internet",2000);
+              }
             }
           }
         ]
