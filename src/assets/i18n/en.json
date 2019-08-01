@@ -15,10 +15,6 @@
 "muscle-sensor":"Muscle Sensor",
 "sensor-calibration":"Sensor Calibration",
 "learning-description":"You'll find here all the useful documentation for Hackberry hand usage.",
-"assembly-guide":"Assembly Guide",
-"user-guide":"User Guide",
-"buttons-usage":"Buttons Usage",
-"setup-hand":"Setup your Hand",
 "bluetooth-pairing":"Bluetooth Pairing",
 "connect-your-hand":"Connect your Hackberry Hand",
 "developped-by":"Developped by",
@@ -56,6 +52,9 @@
 "language":"Language",
 "scan":"Scan",
 "update-docs":"Update the documentation",
+"delete-docs":"Delete the documentation",
+"update-ok":"Update OK",
+"no-update-docs":"Can not check for updates",
 "about-hackberry-1":"Hackberry is an open-source myolectric prosthesis (Prosthesis controlled by muscle sensors placed on the arm to control it) developed by Exiii for people with disabilities hand to regain autonomy in everyday life: social, professional, transport, ...",
 "about-hackberry-2":"These prototypes are still limited for everyday use in comparison to the models on the market, but they have the following characteristics:",
 "about-hackberry-2A":"The total cost of the prosthesis is less than 1000€ (10 000 to 70 000 € on the market)",
@@ -71,5 +70,6 @@
 "author":"Author",
 "foreword":"Foreword",
 "foreword-1":"My hackberry App is an application for manufacturers and users of Hackberry hands.",
-"foreword-2":"Its development is carried out by volunteers of the association e-Nable France."
+"foreword-2":"Its development is carried out by volunteers of the association e-Nable France.",
+"please-check-internet":"Please check your Internet connection"
 }
