@@ -31,10 +31,11 @@ export class GeneralService {
   // Display a notification on the bottom of the screen
   async toastOK(payload: string)
   {
+    let me = this;
     async function display(text){
-      this._toast = await this.toastController.create(
+      me._toast = await me.toastController.create(
         {
-        message: payload,
+        message: text,
         buttons: [
           {
             text:'OK',
@@ -46,7 +47,7 @@ export class GeneralService {
         ]
         }
       );
-      this._toast.present();
+      me._toast.present();
     }
     this.translateText(payload).then(
       translatedText =>{
@@ -57,14 +58,15 @@ export class GeneralService {
 
   async toastTemp(payload: string, duration_ms: number)
   {
+    let me = this;
     async function display(text){
-      this._toast = await this.toastController.create(
+      me._toast = await me.toastController.create(
         {
         message: text,
         duration: duration_ms,
         }
       );
-      this._toast.present();
+      me._toast.present();
     }
     this.translateText(payload).then(
       translatedText =>{
@@ -76,8 +78,9 @@ export class GeneralService {
 
   async popup(payload: string)
   {
+    let me = this;
     async function display(text){
-      this._popup = await this.alertController.create({
+      me._popup = await me.alertController.create({
         header: text,
         buttons: [
           {
@@ -87,7 +90,7 @@ export class GeneralService {
         ]
       });
 
-      await this._popup.present();
+      await me._popup.present();
     }
     this.translateText(payload).then(
       translatedText =>{
@@ -98,14 +101,15 @@ export class GeneralService {
  
   async popupTemp(payload: string, delay_ms: number)
   {
+    let me = this;
     async function display(text){
-      this._popup = await this.loadingController.create({
+      me._popup = await me.loadingController.create({
         spinner: 'crescent',
         duration: delay_ms,
         message: text,
         translucent: true,
       });
-      return await this._popup.present();
+      return await me._popup.present();
     }
     this.translateText(payload).then(
       translatedText =>{
@@ -116,21 +120,29 @@ export class GeneralService {
 
   async closeApp()
   {
-    const alert = await this.alertController.create({
-      header: 'Close app?',
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        }, {
-          text: 'Close',
-          handler: () => {
-            navigator['app'].exitApp();
+    let me = this;
+    async function display(text){
+      const alert = await me.alertController.create({
+        header: text + "?",
+        buttons: [
+          {
+            text: 'No',
+            role: 'cancel'
+          }, {
+            text: 'Yes',
+            handler: () => {
+              navigator['app'].exitApp();
+            }
           }
-        }
-      ]
-    });
-    await alert.present();
+        ]
+      });
+      await alert.present();
+    }
+    this.translateText('exit-app').then(
+      translatedText =>{
+        display(translatedText);
+      }
+    )
   }
 
   /** go to previous page */
