@@ -16,10 +16,10 @@
 
 <ion-footer no-shadow>
 	<ion-toolbar position="bottom">
-      <ion-button expand="block" *ngIf="isPlaying" color="warning" (click)="onClickPause()"><ion-icon name="pause"></ion-icon></ion-button>
-      <ion-button expand="block" *ngIf="!isPlaying" color="success" (click)="onClickPlay()"><ion-icon name="play"></ion-icon></ion-button>
+      <ion-button expand="block" *ngIf="isPlaying" color="primary" (click)="onClickPause()"><ion-icon name="pause"></ion-icon></ion-button>
+      <ion-button expand="block" *ngIf="!isPlaying" color="primary" (click)="onClickPlay()"><ion-icon name="play"></ion-icon></ion-button>
 
-      <ion-button expand="block" color="danger" (click)="onClickClear()">Clear</ion-button>
+      <ion-button expand="block" color="danger" (click)="onClickClear()">{{ 'clear' | translate }}</ion-button>
       <br/>
       <ion-button expand="block" *ngIf="!isMoving" color="warning" (click)="onClickEnableMoves()">{{ 'moves-disabled' | translate }}</ion-button>
       <ion-button expand="block" *ngIf="isMoving" color="success" (click)="onClickDisableMoves()">{{ 'moves-enabled' | translate }}</ion-button>

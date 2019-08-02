@@ -24,7 +24,7 @@ export class SensorCalibPage implements OnInit {
 
   onClickCalib(){
     this.bluetooth.writeCmd(this.cmd.CMD_SENS_CALIB);
-    this.gen.popupTemp("Calibration en cours...", 10000);
+    this.gen.popupTemp("progress-calib", 10000);
   }
 
   receiveBluetooth()
@@ -37,7 +37,7 @@ export class SensorCalibPage implements OnInit {
         switch(command)
         {
           case me.cmd.CMD_SENS_CALIB : 
-            me.gen.popupTemp("Calibration en cours...", 10000);
+            me.gen.popupTemp("progress-calib", 10000);
           break;
           default:break;
         }

@@ -24,6 +24,12 @@ export class SensorPage implements OnInit, OnDestroy {
   isPlaying: boolean = false;
   isMoving: boolean = false;
 
+  open_slow: string = "Open (slow)";
+  open_fast : string = "Open (fast)";
+  close_slow : string = "Close (slow)";
+  close_fast : string = "Close (fast)";
+  no_moves: string = "Stop";
+
   constructor(
     public bluetooth : BluetoothService,
     public cmd : BluetoothInstructions,
@@ -34,21 +40,69 @@ export class SensorPage implements OnInit, OnDestroy {
     this.bluetooth.clearCmd();
     this.bluetooth.writeCmd(this.cmd.CMD_SRV_DISABLE);
     this.dataSensor = [];
-    this.buildChart();
+    //this.buildChart();
     this.bluetoothReceive();
+
+    this.tradLabels()
+    .then(
+      _=>{
+        this.buildChart();
+      }
+    )
   }
 
   ngOnDestroy(){
     this.stopTimer();
   }
 
+  tradLabels() : Promise<boolean>
+  {
+    let me = this;
+    return this.gen.translateText("open-slow")
+    .then(
+      text =>
+      { 
+        me.open_slow = text;
+        return this.gen.translateText("open-fast")
+        .then(
+          text =>
+          { 
+            me.open_fast = text;
+            return this.gen.translateText("no-moves")
+            .then(
+              text =>
+              { 
+                me.no_moves = text;
+                return this.gen.translateText("close-slow")
+                .then(
+                  text =>
+                  { 
+                    me.close_slow = text;
+                    return this.gen.translateText("close-fast")
+                    .then(
+                      text =>
+                      { 
+                        me.close_fast = text;
+                        return Promise.resolve(true);
+                      }
+                    )
+                  }
+                )
+              }
+            )
+          }
+        )
+      }
+    );
+  }
+
   buildChart() {
     var yLabels = {
-      0  : 'Open(fast)',
-      400 : 'Open(slow)',
-      500 : 'No move',
-      600 : 'Close(slow)',
-      1024 : 'Close(fast)'
+      0  : this.open_fast,
+      400 : this.open_slow,
+      500 : this.no_moves,
+      600 : this.close_slow,
+      1024 : this.close_fast
   }
 
     this.lineChart = new Chart(this.lineCanvas.nativeElement, {
@@ -175,23 +229,17 @@ export class SensorPage implements OnInit, OnDestroy {
   onClickClear(){
     this.clearData();
   }
-  /*
-  onClickCalib(){
-    this.onClickPause();
-    this.bluetooth.writeCmd(this.cmd.CMD_SENS_CALIB);
-    this.gen.popupTemp("Calibration en cours...", 10000);
-  }*/
 
   onClickEnableMoves(){
     this.bluetooth.writeCmd(this.cmd.CMD_SRV_ENABLE);
     this.isMoving = true;
-    this.gen.toastTemp("Moves Enabled", 1000);
+    this.gen.toastTemp("moves-enabled", 1000);
   }
 
   onClickDisableMoves(){
     this.bluetooth.writeCmd(this.cmd.CMD_SRV_DISABLE);
     this.isMoving = false;
-    this.gen.toastTemp("Moves Disabled", 1000);
+    this.gen.toastTemp("moves-disabled", 1000);
   }
 
   bluetoothReceive()

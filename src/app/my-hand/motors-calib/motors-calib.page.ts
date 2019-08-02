@@ -197,7 +197,7 @@ export class MotorsCalibPage implements OnInit
             me.countACK += 1;
 
             if (me.countACK == me.targetACK){
-              me.gen.toastTemp("Calibration finished !",1000);
+              me.gen.toastTemp("success-calib",1000);
               me.gen.finish();
             }
           default:break;
@@ -216,7 +216,7 @@ export class MotorsCalibPage implements OnInit
     }
     else
     {
-      this.gen.toastTemp("Motors Calibration finished !",1500);
+      this.gen.toastTemp("success-calib",1500);
       this.gen.finish();
     }
     
@@ -225,7 +225,7 @@ export class MotorsCalibPage implements OnInit
   
   cancelCalib()
   {
-    this.gen.toastTemp("Motors Calibration canceled",1500);
+    this.gen.toastTemp("cancel-calib",1500);
     this.gen.finish();
   }
 
