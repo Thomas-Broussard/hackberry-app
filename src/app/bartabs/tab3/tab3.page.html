@@ -16,6 +16,8 @@
       </ion-card-content>
     </ion-card>
     <ion-list lines="none">
+      <ion-button routerLink="/settings" routerDirection="forward" *ngIf="docNeedUpdate()" expand="block" color="primary">{{ 'new-docs-available' | translate }}</ion-button>
+
 
       <ion-item *ngFor="let doc of docList" (click)="openDoc(doc.filename)"  detail="true">
           <ion-icon slot="start" [color]="doc.color" [name]="doc.icon"></ion-icon>
@@ -26,17 +28,17 @@
       </ion-item>
 
       
-      <ion-item *ngIf="documentNeedUpdate()" detail="false">
+      <ion-item *ngIf="noDocFound()" detail="false">
         <h1 class ="centered">{{ 'no-docs-found' | translate }}</h1>
     </ion-item>
 
-    <ion-item *ngIf="documentNeedUpdate()" detail="false" class ="centered">
+    <ion-item *ngIf="noDocFound()" detail="false" class ="centered">
       <p class ="centered">{{ 'please-update-docs' | translate }}</p>
     </ion-item>
     <br/>
 
     <!--<ion-button  *ngIf="isUpdateAvailable" expand="block" color="primary" (click)="downloadAllDocs()"><ion-icon name="download"></ion-icon> {{ 'update-docs' | translate }}</ion-button>-->
-    <ion-button *ngIf="isUpdateAvailable" expand="block" color="primary">{{ 'new-docs-available' | translate }}</ion-button>
+    
     
     
     </ion-list>

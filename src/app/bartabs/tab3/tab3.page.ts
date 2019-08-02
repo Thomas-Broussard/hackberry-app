@@ -1,4 +1,4 @@
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { GeneralService } from './../../services/general.service';
 import { HackberryDocService } from './../../services/pdf/hackberry-doc.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,6 +13,7 @@ export class Tab3Page implements OnInit{
   constructor(
     private doc : HackberryDocService,
     private gen : GeneralService,
+    public navCtrl: NavController
     ) {}
 
     isUpdateAvailable : boolean = false;
@@ -40,9 +41,14 @@ export class Tab3Page implements OnInit{
     this.gen.getLanguage().then(
       result => {
         me.countryCode = result;
-        this.doc.open(name, me.countryCode); 
+        this.doc.open(name, me.countryCode).then().catch(
+          err=>{
+            console.log("error file not found ",err);
+            this.gen.toastTemp("error-file-not-found", 2000);
+          }
+        ); 
       }
-    );
+    )
   }
 
   /**
@@ -50,7 +56,17 @@ export class Tab3Page implements OnInit{
    * 
    * @return true if update needed ; false otherwise
    */
-  documentNeedUpdate()
+  docNeedUpdate()
+  {
+    return this.isUpdateAvailable;
+  }
+
+  /**
+   * Check if documents are found or not
+   * 
+   * @return true if  found ; false otherwise
+   */
+  noDocFound()
   {
     if (this.docList != undefined && this.docList != null) return this.docList.length <= 0;
     else return true;
