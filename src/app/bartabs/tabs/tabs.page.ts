@@ -29,26 +29,35 @@ export class TabsPage implements OnInit, OnDestroy, AfterViewInit{
   }
   
   ngAfterViewInit() {
-    this.subscription = this.platform.backButton.subscribe(async () => {
-      if (this.isHomePath()) {
-        const alert = await this.alertController.create({
-          header: 'Close app?',
-          buttons: [
-            {
-              text: 'Cancel',
-              role: 'cancel'
-            }, {
-              text: 'Close',
-              handler: () => {
-                navigator['app'].exitApp();
-              }
+
+    async function display(text){
+      const alert = await this.alertController.create({
+        header: text,
+        buttons: [
+          {
+            text: 'No',
+            role: 'cancel'
+          }, {
+            text: 'Yes',
+            handler: () => {
+              navigator['app'].exitApp();
             }
-          ]
-        });
-    
-        await alert.present();
+          }
+        ]
+      });
+  
+      await alert.present();
+    }
+
+    this.subscription = this.platform.backButton.subscribe(async () => {
+      if (this.isHomePath()) 
+      {
+        this.gen.translateText('exit-app').then(
+          translatedText=>{ display(translatedText);}
+        )
       }
-    });
+    }
+    );
   }
 
   ngOnDestroy() { 

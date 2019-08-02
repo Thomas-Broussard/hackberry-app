@@ -33,14 +33,14 @@ export class BluetoothConnectPage implements OnInit {
   connect(device: any)
   {
     let me = this;
-    this.gen.popupTemp("Connecting to " + device.name + "...", this.timeConnect_ms);
+    this.gen.popupTemp("progress-connect", this.timeConnect_ms);
     this.bluetooth.connect(device).subscribe(
       (isConnected: boolean)=>
       {
         if (isConnected){
           this.gen.dismiss();
           console.log("Successfully Connected ! ");
-          this.gen.toastTemp("Successfully Connected ! ", 2000);
+          this.gen.toastTemp("success-connected", 2000);
           this.gen.finish();
         } else {
           //console.log("Connection Failure...");
@@ -53,7 +53,7 @@ export class BluetoothConnectPage implements OnInit {
     setTimeout( () => {
       if (!me.bluetooth.isConnected())
       {
-        me.gen.toastTemp("Connection Failure... Please retry later",2000);
+        me.gen.toastTemp("fail-connected",2000);
       }
     }, this.timeConnect_ms);
   }

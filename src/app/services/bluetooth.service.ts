@@ -67,7 +67,7 @@ export class BluetoothService {
       },
       function() {
         me._isEnabled = false;
-        me.gen.toastOK("Please enable Bluetooth");
+        me.gen.toastOK("enable-bluetooth");
       }
     );
   }
@@ -129,7 +129,7 @@ export class BluetoothService {
   {
     this.currentDevice.clear();
     this._isConnected = false;
-    this.gen.toastTemp("Bluetooth disconnected", 2000);
+    this.gen.toastTemp("bluetooth-disconnected", 2000);
 
     // stop the timers
     this.stopChecking();
@@ -171,7 +171,7 @@ export class BluetoothService {
             me._isScanning = false;
         }, 
         error => {
-          me.gen.toastTemp(error, 2000);
+          //me.gen.toastTemp(error, 2000);
           console.log(error);
           me._isScanning = false;
         }
@@ -271,7 +271,7 @@ export class BluetoothService {
       function(){
         me._isConnected = false;
         me.stopChecking();
-        me.gen.popup("Hand disconnected");
+        me.gen.popup("hand-disconnected");
 
         // return to home if user was on hand driving pages
         if (me.router.url.includes('my-hand'))
