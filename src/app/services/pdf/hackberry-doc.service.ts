@@ -45,10 +45,20 @@ export class HackberryDocService {
    * @param name name of the document to download
    * @param countryCode language wanted (fr, en , jp)
    */
-  open(name: string, countryCode: string)
+  open(name: string, countryCode: string) : Promise<boolean>
   {
     var languageName = name + '_' + countryCode;
-    this.pdf.open(languageName);
+    return this.pdf.open(languageName)
+    .then(
+      _=>{
+        return Promise.resolve(true);
+      }
+    )
+    .catch(
+      err=>{
+        return Promise.reject(false);
+      }
+    )
   }
 
   /**
@@ -151,47 +161,56 @@ export class HackberryDocService {
     async downloadLatestDocs()
     {
       let me = this;
-      let message = "Download the latest Documentation Pack available ? (internet required)";
-      const alert = await this.alertController.create({
-        header: message,
-        buttons: [
-          {
-            text: 'Cancel',
-            role: 'cancel'
-          }, {
-            text: 'OK',
-            handler: () => {
+      async function display(text){
+        const alert = await me.alertController.create({
+          header: text,
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel'
+            }, {
+              text: 'OK',
+              handler: () => {
 
-              if (me.gen.isConnectedToInternet())
-              {
-                me.gen.popupTemp("Updating Documentation...", 600 * 1000);
-                me.launchDownloadLatestDocs()
-                .then(
-                  result =>{
-                    if (result == true)
-                    {
-                      console.log("downloadLatestDocs finished");
-                      me.gen.dismiss();
-                      me.gen.toastTemp("Documentations successfully downloaded !",2000);
+                if (me.gen.isConnectedToInternet())
+                {
+                  me.gen.popupTemp("progress-docs", 600 * 1000);
+                  me.launchDownloadLatestDocs()
+                  .then(
+                    result =>{
+                      if (result == true)
+                      {
+                        console.log("downloadLatestDocs finished");
+                        me.gen.dismiss();
+                        me.gen.toastTemp("success-docs",2000);
+                      }
                     }
-                  }
-                )
-                .catch(
-                  err=>{ 
-                    console.log("downloadLatestDocs error");
-                      me.gen.dismiss();
-                      me.gen.toastTemp("Error during download. Please retry later.",2000);
-                  }
-                )
-              }
-              else{
-                me.gen.toastTemp("Error : you're not connected to internet",2000);
+                  )
+                  .catch(
+                    err=>{ 
+                      console.log("downloadLatestDocs error");
+                        me.gen.dismiss();
+                        me.gen.toastTemp("fail-docs",2000);
+                    }
+                  )
+                }
+                else{
+                  me.gen.toastTemp("error-internet",2000);
+                }
               }
             }
-          }
-        ]
-      });
-      await alert.present();
+          ]
+        });
+        await alert.present();
+      }
+
+      this.gen.translateText('download-latest-docs').then
+      (
+        translatedText =>
+        {
+          display(translatedText);
+        }
+      )
     }
 
 
@@ -509,38 +528,47 @@ export class HackberryDocService {
     async eraseAllDocs()
     {
       let me = this;
-      let message = "Delete the documentation ?";
-      const alert = await this.alertController.create({
-        header: message,
-        buttons: [
-          {
-            text: 'No',
-            role: 'cancel'
-          }, {
-            text: 'Yes',
-            handler: () => {
-              me.gen.popupTemp("Erasing Documentation...", 600 * 1000);
-              me.file.removeDir(me.pdf.docPath,me.pdf.docDir)
-              .then(
-                _=>{
-                  console.log("eraseAllDocs finished");
-                  me.gen.dismiss();
-                  me.gen.toastTemp("Documentations successfully removed",2000);
-                }
-              )
-              .catch(
-                _=>
-                {
-                  console.log("eraseAllDocs finished");
-                  me.gen.dismiss();
-                  me.gen.toastTemp("Documentations successfully removed",2000);
-                }
-              )
+
+      async function display(text){
+        const alert = await me.alertController.create({
+          header: text,
+          buttons: [
+            {
+              text: 'No',
+              role: 'cancel'
+            }, {
+              text: 'Yes',
+              handler: () => {
+                me.file.removeRecursively(me.pdf.docPath,me.pdf.docDir)
+                .then(
+                  _=>{
+                    console.log("eraseAllDocs finished");
+                    me.gen.dismiss();
+                    me.gen.toastTemp("success-rm-docs",2000);
+                  }
+                )
+                .catch(
+                  _=>
+                  {
+                    console.log("eraseAllDocs finished");
+                    me.gen.dismiss();
+                    me.gen.toastTemp("success-rm-docs",2000);
+                  }
+                )
+              }
             }
-          }
-        ]
-      });
-      await alert.present();
+          ]
+        });
+        await alert.present();
+      }
+      
+      this.gen.translateText('rm-all-docs').then
+      (
+        translatedText =>
+        {
+          display(translatedText);
+        }
+      )
     }
     
 }

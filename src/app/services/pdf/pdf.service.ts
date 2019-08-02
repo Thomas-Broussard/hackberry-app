@@ -72,16 +72,19 @@ export class PdfService {
       if (this.platform.is('android')) 
       {
         return this.fileOpener.open(this.docFullPath + `${name}.pdf`, 'application/pdf')
-        .then(() => {
-          console.log('File is opened');
-          return Promise.resolve(true);
-        })
+        .then( _=> 
+          {
+            console.log('File is opened');
+            return Promise.resolve(true);
+          }
+        )
         .catch(
           err =>
           {
-            console.log('Error opening file', err);
-            return Promise.reject(err);
-          });
+            console.log('Error opening file ', err);
+            return Promise.reject(false);
+          }
+        );
       } 
       else 
       {
@@ -114,7 +117,7 @@ export class PdfService {
         .then(
           (entry) => 
             {
-              console.log('file download response',entry);
+              console.log('error-download',entry);
               me.open(name);
               me.gen.dismiss();
             }
@@ -123,7 +126,7 @@ export class PdfService {
           (err) =>{
             console.log('error in file download',err);
             me.gen.dismiss();
-            me.gen.toastTemp("Error : can't download File", 2000);
+            me.gen.toastTemp("error-download", 2000);
           }
         )
       )
