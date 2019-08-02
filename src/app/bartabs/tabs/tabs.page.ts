@@ -29,10 +29,10 @@ export class TabsPage implements OnInit, OnDestroy, AfterViewInit{
   }
   
   ngAfterViewInit() {
-
+    let me = this;
     async function display(text){
-      const alert = await this.alertController.create({
-        header: text,
+      const alert = await me.alertController.create({
+        header: text + ' ?',
         buttons: [
           {
             text: 'No',
@@ -50,9 +50,9 @@ export class TabsPage implements OnInit, OnDestroy, AfterViewInit{
     }
 
     this.subscription = this.platform.backButton.subscribe(async () => {
-      if (this.isHomePath()) 
+      if (me.isHomePath()) 
       {
-        this.gen.translateText('exit-app').then(
+        me.gen.translateText('exit-app').then(
           translatedText=>{ display(translatedText);}
         )
       }
