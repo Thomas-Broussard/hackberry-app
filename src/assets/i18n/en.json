@@ -98,5 +98,6 @@
 "no-moves":"Stop",
 "download-latest-docs":"Download the latest Documentation available ? (Internet required)",
 "rm-all-docs":"Delete the Documentation ?",
-"new-docs-available":"Update Available"
+"new-docs-available":"Update Available",
+"hackberry-project":"The Hackberry project"
 }

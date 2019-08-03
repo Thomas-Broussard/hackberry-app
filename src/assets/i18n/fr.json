@@ -98,5 +98,6 @@
 "no-moves":"Stop",
 "download-latest-docs":"Télécharger la dernière Documentation disponible ? (Connexion internet requise)",
 "rm-all-docs":"Supprimer toute la Documentation ?",
-"new-docs-available":"Mise à jour disponible"
+"new-docs-available":"Mise à jour disponible",
+"hackberry-project":"Le projet Hackberry"
 }
