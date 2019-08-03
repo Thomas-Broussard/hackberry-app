@@ -56,6 +56,22 @@ export class GeneralService {
     )
   }
 
+  async popupDebug(payload: string)
+  {
+    let me = this;
+    me._popup = await me.alertController.create({
+      header: payload,
+      buttons: [
+        {
+          text: 'OK',
+          role: 'cancel'
+        }
+      ]
+    });
+
+    await me._popup.present();
+  }
+
   async toastTemp(payload: string, duration_ms: number)
   {
     let me = this;
@@ -74,6 +90,8 @@ export class GeneralService {
       }
     )
   }
+
+  
 
 
   async popup(payload: string)
