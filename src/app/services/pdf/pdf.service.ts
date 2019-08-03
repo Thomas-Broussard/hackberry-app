@@ -21,7 +21,7 @@ export class PdfService {
     private gen : GeneralService,
     ) { }
 
-    docPath: string = this.file.externalRootDirectory;
+    docPath: string = this.file.dataDirectory;
     docDir:  string = "HackberryDoc";
     docFullPath: string  = this.docPath + this.docDir + "/";
     

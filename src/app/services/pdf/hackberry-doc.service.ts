@@ -188,8 +188,9 @@ export class HackberryDocService {
                   )
                   .catch(
                     err=>{ 
-                      console.log("downloadLatestDocs error");
+                      console.log("downloadLatestDocs error", err);
                         me.gen.dismiss();
+                        //me.gen.popupDebug("error : " + JSON.stringify(err));
                         me.gen.toastTemp("fail-docs",2000);
                     }
                   )
@@ -214,7 +215,7 @@ export class HackberryDocService {
     }
 
 
-    launchDownloadLatestDocs() : Promise<boolean>
+    launchDownloadLatestDocs() : Promise<any>
     {
       let me = this;
       var localList: any[] = null;
@@ -356,7 +357,7 @@ export class HackberryDocService {
     /**
      * download the remote list from github and save it in the phone memory
      */
-    saveRemoteListAsLocal() : Promise<boolean>
+    saveRemoteListAsLocal() : Promise<any>
     {
       var url = this.rawURL + 'list.json';
       let me = this;
