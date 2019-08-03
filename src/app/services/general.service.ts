@@ -9,7 +9,7 @@ import { Network } from '@ionic-native/network/ngx';
 })
 export class GeneralService {
 
-  public APP_VERSION: String = "0.0.1";
+  public APP_VERSION: String = "0.0.2";
 
   public THUMB : number = 1;
   public INDEX : number = 2;
