@@ -41,7 +41,7 @@
     "angular-translate": "^2.18.1",
     "angular-translate-loader-static-files": "^2.18.1",
     "bower": "^1.8.8",
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "cordova-android": "^8.0.0",
     "cordova-ios": "^5.0.1",
     "cordova-plugin-ble-central": "^1.2.2",
